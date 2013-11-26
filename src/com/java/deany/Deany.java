@@ -6,17 +6,18 @@ public class Deany {
         public final String serializedFile = "students.out";
         public final String textFile = "students.txt";
         public final String xmlFile = "students.xml";
-   
-	
+        //public static String regExp = "(([\\d]*)[\\s][A-Z]{1}[a-z-]*[\\s][A-Z]{1}[a-z-]*[\\s][1-5]\\.[\\d][\\s][1-5][\\d]{2})";
+        
+        	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		new Deany();
 	}
 	
 	public Deany() {
-		if (!students.loadFromFile(textFile)) 
-		//	students.deserializeStudentsList(serializedFile);  //Serialization  
-		students.loadFromXml(xmlFile);
+		//if (!students.loadFromFile(textFile)) 
+		students.deserializeStudentsList(serializedFile);  //Serialization  
+		//students.loadFromXml(xmlFile);
 		//students.add(new Student("Alexandrov","Alex",4.3,541)); //add new student
 		for (Student s:students){
 			System.out.println(s); //print all students

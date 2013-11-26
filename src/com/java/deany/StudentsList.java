@@ -40,19 +40,18 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 		return false;
 	}
 	
-        /*
+        /**
          * Load students list from file
          */
         
 	@SuppressWarnings("unchecked")
-	public boolean loadFromFile(String fileName){
+	public void loadFromFile(String fileName){
 		List<Student> stud = new ArrayList<>();
         Scanner in = null;
 		try  {
 			in = new Scanner(new File(fileName));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-            return false;
 		}
         while(in.hasNext())
         {
@@ -65,14 +64,12 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
         }
         in.close();    
 		this.addAll(((Collection<? extends E>) stud));
-                return true;
 	}
-	
-        /*
-         * Save students list from file
-         */
-        
-	public void saveToFile(String filename){
+	/**
+	 * Save students list from file
+	 * @param filename
+	 */
+	public final void saveToFile(final String filename){
 		FileWriter fileWriter = null;
 		try {
 			fileWriter = new FileWriter(filename);
@@ -80,13 +77,11 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		String newLine = System.getProperty("line.separator");
 		String students = "";
-		for (E s:this){
-			students += s.toString() + newLine;
-		}
-		
+		for (E s:this) {
+				students += s.toString() + newLine;
+			}
 		try {
 			fileWriter.write(students);
 			fileWriter.close();
@@ -95,16 +90,15 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 	    }
 	}
         
-        /*
-         * Sort students list by field
-         */
-	
+    /**
+     * Sort students list by field
+     */
 	@SuppressWarnings("unchecked")
 	public void orderBy(StudentsField field){
 		Collections.sort((List<Student>)this, new Order(field));
 	}
 	
-	/*
+	/**
 	 * Get students by GROUP,MARK,COURSE
 	 * overloaded method getStudentsBy
 	 */
@@ -134,6 +128,14 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 		return resultStudentsList;
 	}
 	
+	
+	/**
+	 * 
+	 * @param field
+	 * @param operator
+	 * @param i
+	 * @return
+	 */
 	public StudentsList<E> getStudentsBy(StudentsField field, Character operator, int i)
 	{
 		StudentsList<E> resultStudentsList = new StudentsList<>();
@@ -162,10 +164,11 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 		return resultStudentsList;
 	}
 	
-        /*
-         * Serialize students list to file
-         */
-        
+    /**
+     * 
+     * Serialize students list to file
+     * @param fileName
+     */ 
 	public void serializeStudentsList(String fileName)
 	{
 		try{
@@ -182,13 +185,15 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 		}
 	}
         
-        /*
-         * Deserialize students list from file
-         */
-	
+    
+	/**
+     * Deserialize students list from file
+     * @param fileName
+     */
 	@SuppressWarnings("unchecked")
-	public StudentsList<E> deserializeStudentsList(String fileName)
+	public void deserializeStudentsList(String fileName)
 	{
+		this.clear();
 		StudentsList<E> ts = null;
 		try{
 			FileInputStream fis = new FileInputStream(fileName);
@@ -204,29 +209,34 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 		{
 			e.printStackTrace();
 		}
-		return ts;
+		this.addAll(ts);
+		//return ts;
 	}
         
-        /*
-         * Save students list to XML file
-         */
-
+    /**
+     * Save students list to XML file
+     * @param xmlFileName
+     */
 	@SuppressWarnings("unchecked")
 	public void saveToXml(String xmlFileName)
 	{
 		try {
-			WorkWithXML.saveToXml((StudentsList<Student>) this, xmlFileName);
-		} catch (ParserConfigurationException | TransformerException e) {
+			WorkWithXML.saveToXml((StudentsList<Student>) this, xmlFileName);	
+		} 
+		catch (ParserConfigurationException | TransformerException e) {
 			e.printStackTrace();
 		}
 		
 	}
-        
+    
+	/**
+     * Save students list to XML file
+     * @param xmlFileName
+     */
     @SuppressWarnings("unchecked")
-	public boolean loadFromXml(String xmlFileName)
+	public void loadFromXml(String xmlFileName)
 	{
 		this.addAll((Collection<? extends E>) WorkWithXML.loadFromXML(xmlFileName));
-		return true;
 	}
     
    

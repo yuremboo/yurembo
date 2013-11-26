@@ -18,11 +18,7 @@ public class Order implements Comparator<Student> {
 		if (field == StudentsField.ID) return arg0.getId() - arg1.getId();
 		if (field == StudentsField.LASTNAME) return arg0.getLastName().compareTo(arg1.getLastName());
 		if (field == StudentsField.FIRSTNAME) return arg0.getFirstName().compareTo(arg1.getFirstName());
-		if (field == StudentsField.MARK){return (int)(arg0.getAverageMark()*1000 - arg1.getAverageMark()*1000); 
-		/*	if (arg0.getAverageMark() > arg1.getAverageMark()) return 1;
-			if (arg0.getAverageMark() < arg1.getAverageMark()) return -1;
-            return 0;*/
-            }
+		if (field == StudentsField.MARK)return (int)(arg0.getAverageMark()*1000 - arg1.getAverageMark()*1000); 
 		if (field == StudentsField.GROUP) return arg0.getGroup() - arg1.getGroup();
 		return 0;		
 	}

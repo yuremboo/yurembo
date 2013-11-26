@@ -6,14 +6,8 @@ import java.io.Serializable;
 enum StudentsField {ID, FIRSTNAME, LASTNAME, MARK, GROUP, COURSE};
 
 public class Student implements Serializable{
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	/**
-	 * 
-	 */
 	//private static final long serialVersionUID = 1L;
 	private String lastName;
 	private String firstName;
@@ -47,7 +41,10 @@ public class Student implements Serializable{
 	{
 		return this.lastName;
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public double getAverageMark()
 	{
 		return this.averageMark;
@@ -63,11 +60,32 @@ public class Student implements Serializable{
 		this.groupNumber = group;
 	}
 	
+	public void setId(int id)
+	{
+		this.id = id;
+	}
+	
+	@Override
+	public boolean equals(Object obj){
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		if (this.averageMark == ((Student)obj).getAverageMark() && 
+				this.getGroup() == ((Student)obj).getGroup() && 
+				this.getFirstName().equals(((Student)obj).getFirstName()) &&
+				this.getLastName().equals(((Student)obj).getLastName()))
+		{
+			return true;
+		}
+		return false;
+	}    
+
 	@Override
 	public String toString(){
 		return getId() + " " + getLastName() + " " + getFirstName() + " " + getAverageMark() + " " + getGroup();
 	}
-
 
 
 }
