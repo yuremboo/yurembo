@@ -14,9 +14,6 @@ public class Deany {
 	}
 	
 	public Deany() {
-		students.equals(students);
-
-		// TODO Auto-generated constructor stub
 		if (!students.loadFromFile(textFile)) 
 		//	students.deserializeStudentsList(serializedFile);  //Serialization  
 		students.loadFromXml(xmlFile);
@@ -26,16 +23,9 @@ public class Deany {
 			if (s.getLastName().compareTo("Ivanov") == 0) {
 				students.increaseCourse(s);
 				System.out.println(s);
-			} 		}
-                
-             
-		
-                
-		/*
-		 * public void sortBy(StudentsField field)
-		 */
-		students.sortBy(StudentsField.MARK);  //sorting students list
-		
+				}
+			}
+		students.orderBy(StudentsField.MARK);  //sorting students list
 		for (Student s:students){
 			System.out.println(s); //print all students
 		}
