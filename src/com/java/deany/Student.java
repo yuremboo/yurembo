@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 
 enum StudentsField {ID, FIRSTNAME, LASTNAME, MARK, GROUP, COURSE};
-
+/**
+ * @author yurembo
+ */
 public class Student implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -16,53 +18,69 @@ public class Student implements Serializable{
 	private int id;
 	private static int ID = 1;
 	public static String regExp = "(([\\d]*)[\\s][A-Z]{1}[a-z-]*[\\s][A-Z]{1}[a-z-]*[\\s][1-5]\\.[\\d][\\s][1-5][\\d]{2})";
-	
-	public Student(String lastName, String firstName, double averageMark, int groungNumber)
+	/**
+	 * 
+	 * @param lastName - last name of student. Type: String.
+	 * @param firstName - first name of student. Type: String.
+	 * @param averageMark - average mark of student. Type: double.
+	 * @param groupNumber - number of student's group. Type: double.
+	 */
+	public Student(String lastName, String firstName, double averageMark, int groupNumber)
 	{
 		this.lastName = lastName;
 		this.firstName= firstName;
 		this.averageMark = averageMark;
-		this.groupNumber = groungNumber;
+		this.groupNumber = groupNumber;
 		this.id = ID;
 		ID++;
 	}
-	
+	/**
+	 * 
+	 * @return Student's first name. Type: String.
+	 */
 	public String getFirstName()
 	{
 		return this.firstName;
 	}
-	
+	/**
+	 * 
+	 * @return Student's ID. Type: int.
+	 */
 	public int getId()
 	{
 		return this.id;
 	}
-	
+	/**
+	 * 
+	 * @return Student's last name. Type: String.
+	 */
 	public String getLastName()
 	{
 		return this.lastName;
 	}
 	/**
 	 * 
-	 * @return
+	 * @return Student's average mark. Type: double.
 	 */
 	public double getAverageMark()
 	{
 		return this.averageMark;
 	}
-	
+	/**
+	 * 
+	 * @return Student's group. Type: int.
+	 */
 	public int getGroup()
 	{
 		return this.groupNumber;
 	}
-	
+	/**
+	 * 
+	 * @param group - Student's group. Type: int.
+	 */
 	public void setGroup(int group)
 	{
 		this.groupNumber = group;
-	}
-	
-	public void setId(int id)
-	{
-		this.id = id;
 	}
 	
 	@Override

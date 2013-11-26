@@ -23,13 +23,16 @@ import com.java.utils.WorkWithRegex;
 import com.java.utils.WorkWithXML;
 
 public class StudentsList<E> extends ArrayList<E> implements Serializable{
-
+	
 	/**
 	 * 
 	 */
-
 	private static final long serialVersionUID = 5653602324956363704L;
 	
+	/**
+	 * @param s - student
+	 * @return true - if student was transported to the next course, false - if not.
+	 */
 	public boolean increaseCourse(Student s){
 		int oneCourse = 100;
 		int maxCourse = 500; //max course * 100
@@ -40,11 +43,10 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 		return false;
 	}
 	
-        /**
-         * Load students list from file
-         */
-        
-	@SuppressWarnings("unchecked")
+	/**
+	 * @param fileName - name of text-file with students in selected format
+	 */
+    @SuppressWarnings("unchecked")
 	public void loadFromFile(String fileName){
 		List<Student> stud = new ArrayList<>();
         Scanner in = null;
@@ -65,11 +67,12 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
         in.close();    
 		this.addAll(((Collection<? extends E>) stud));
 	}
+    
 	/**
 	 * Save students list from file
-	 * @param filename
+	 * @param filename - name of text-file to save students list in selected format
 	 */
-	public final void saveToFile(final String filename){
+	public void saveToFile(String filename){
 		FileWriter fileWriter = null;
 		try {
 			fileWriter = new FileWriter(filename);
@@ -92,7 +95,8 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
         
     /**
      * Sort students list by field
-     */
+	 * @param field - parameter of StudentsField type
+	 */
 	@SuppressWarnings("unchecked")
 	public void orderBy(StudentsField field){
 		Collections.sort((List<Student>)this, new Order(field));
@@ -101,8 +105,12 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 	/**
 	 * Get students by GROUP,MARK,COURSE
 	 * overloaded method getStudentsBy
+	 * 
+	 * @param field - StudentsField
+	 * @param operator - Character
+	 * @param i - Double
+	 * @return StudentsList<E>
 	 */
-		
 	public StudentsList<E> getStudentsBy(StudentsField field, Character operator, Double i)
 	{
 		StudentsList<E> resultStudentsList = new StudentsList<>();
@@ -130,11 +138,13 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 	
 	
 	/**
+	 * Get students by GROUP,MARK,COURSE
+	 * overloaded method getStudentsBy
 	 * 
-	 * @param field
-	 * @param operator
-	 * @param i
-	 * @return
+	 * @param field - StudentsField
+	 * @param operator - Character
+	 * @param i - int
+	 * @return StudentsList<E>
 	 */
 	public StudentsList<E> getStudentsBy(StudentsField field, Character operator, int i)
 	{
@@ -167,7 +177,7 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
     /**
      * 
      * Serialize students list to file
-     * @param fileName
+     * @param fileName - Name of existing file on HDD.
      */ 
 	public void serializeStudentsList(String fileName)
 	{
@@ -188,7 +198,7 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
     
 	/**
      * Deserialize students list from file
-     * @param fileName
+     * @param fileName - Name of serialized file before.
      */
 	@SuppressWarnings("unchecked")
 	public void deserializeStudentsList(String fileName)
@@ -215,7 +225,7 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
         
     /**
      * Save students list to XML file
-     * @param xmlFileName
+     * @param xmlFileName - Name of XML-file to save students list.
      */
 	@SuppressWarnings("unchecked")
 	public void saveToXml(String xmlFileName)
@@ -231,7 +241,7 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
     
 	/**
      * Save students list to XML file
-     * @param xmlFileName
+     * @param xmlFileName - Name of XML-file to load students list from.
      */
     @SuppressWarnings("unchecked")
 	public void loadFromXml(String xmlFileName)
