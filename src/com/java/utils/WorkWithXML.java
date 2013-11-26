@@ -22,7 +22,11 @@ import com.java.deany.Student;
 import com.java.deany.StudentsList;
 
 public class WorkWithXML {
-	
+	/**
+	 * 
+	 * @param xmlFileName - Name of XML-file to save students list.
+	 * @return Students list
+	 */
 	public static StudentsList<Student> loadFromXML(String xmlFileName){
 		StudentsList<Student> students = new StudentsList<>();
 		Document doc = null;
@@ -110,7 +114,13 @@ public class WorkWithXML {
 			return 0;
 		}
 	}
-	
+	/**
+	 * 
+	 * @param students - students list. Type: StudentsList<Student>.
+	 * @param xmlFileName - Name of XML-file with students list.
+	 * @throws ParserConfigurationException
+	 * @throws TransformerException
+	 */
 	public static void saveToXml(StudentsList<Student> students, String xmlFileName) throws ParserConfigurationException, TransformerException
 	{
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();

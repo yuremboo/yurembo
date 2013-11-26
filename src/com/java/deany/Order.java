@@ -6,9 +6,11 @@ import com.java.deany.StudentsField;
 
 public class Order implements Comparator<Student> {
 	private StudentsField field;
-
+	/**
+	 * 
+	 * @param field - field of the table fo students. Type: StudentsField.
+	 */
 	public Order(StudentsField field) {
-		// TODO Auto-generated constructor stub
 		this.field = field;
 	}
 
