@@ -13,12 +13,13 @@ public class Deany {
 		// TODO Auto-generated method stub
 		new Deany();
 	}
-	
+
 	public Deany() {
-		//if (!students.loadFromFile(textFile)) 
-		students.deserializeStudentsList(serializedFile);  //Serialization  
+		
+		//students.deserializeStudentsList(serializedFile);  //Serialization 
+		students.loadFromFile(textFile); 
 		//students.loadFromXml(xmlFile);
-		//students.add(new Student("Alexandrov","Alex",4.3,541)); //add new student
+		students.add(new Student("Test","Test",2.5,141)); //add new student
 		for (Student s:students){
 			System.out.println(s); //print all students
 			if (s.getLastName().compareTo("Ivanov") == 0) {
@@ -43,9 +44,9 @@ public class Deany {
 			System.out.println(s); //print all studentsBy
 		}
 		
-		//students.saveToFile(textFile);  //Save to file
+		students.saveToFile(textFile);  //Save to file
 		students.serializeStudentsList(serializedFile);  //Serialization
-		//students.saveToXml(xmlFile);
+		students.saveToXml(xmlFile);
                 
 	}
 }

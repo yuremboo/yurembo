@@ -83,6 +83,15 @@ public class Student implements Serializable{
 		this.groupNumber = group;
 	}
 	
+	/**
+	 * 
+	 * @param ID - Student's ID. Type: int.
+	 */
+	public static void setID(int ID)
+	{
+		Student.ID = ID;
+	}
+	
 	@Override
 	public boolean equals(Object obj){
 		if (this == obj) return true;

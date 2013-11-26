@@ -48,6 +48,7 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 	 */
     @SuppressWarnings("unchecked")
 	public void loadFromFile(String fileName){
+    	this.clear();
 		List<Student> stud = new ArrayList<>();
         Scanner in = null;
 		try  {
@@ -187,7 +188,6 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 			oos.writeObject(this);
 			oos.flush();
 			oos.close();
-			System.out.println("Serialization DONE");
 		}
 		catch (IOException e) {
 				// TODO: handle exception
@@ -219,8 +219,15 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 		{
 			e.printStackTrace();
 		}
+		int maxId = ((Student)ts.get(0)).getId();
+		
+		int currentId = maxId;
+		for (E s:ts){
+			currentId = ((Student) s).getId();
+			maxId = currentId > maxId?currentId:maxId;
+		}
+		Student.setID(++maxId);
 		this.addAll(ts);
-		//return ts;
 	}
         
     /**
@@ -246,9 +253,7 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
     @SuppressWarnings("unchecked")
 	public void loadFromXml(String xmlFileName)
 	{
+    	this.clear();
 		this.addAll((Collection<? extends E>) WorkWithXML.loadFromXML(xmlFileName));
 	}
-    
-   
-
 }
