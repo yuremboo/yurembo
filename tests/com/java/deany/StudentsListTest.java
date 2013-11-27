@@ -28,11 +28,13 @@ public class StudentsListTest extends Assert{
   StudentsList<Student> students = new StudentsList<Student>();
   Student firstStudentTest = new Student("Test", "First", 4.5, 521);
   Student secondStudentTest = new Student("Test", "Second", 5.0, 321);
+  Student thirdStudentTest = new Student("Testt", "Third", 3.0, 441);
   
   @BeforeClass
   public void beforeClass() {
 	  firstStudentTest = new Student("Test", "First", 4.5, 521);
 	  secondStudentTest = new Student("Test", "Second", 5.0, 321);
+	  thirdStudentTest = new Student("Testt", "Third", 3.0, 441);
   }
 
   @AfterClass
@@ -44,6 +46,7 @@ public class StudentsListTest extends Assert{
   public void beforeTest() {
 	  students.add(firstStudentTest);
 	  students.add(secondStudentTest);
+	  students.add(thirdStudentTest);
   }
   
   @AfterTest
@@ -57,6 +60,7 @@ public class StudentsListTest extends Assert{
 	  StudentsList<Student> expectedList = new StudentsList<Student>();	  
 	  expectedList.add(firstStudentTest);
 	  expectedList.add(secondStudentTest);
+	  expectedList.add(thirdStudentTest);
 	  expectedList.serializeStudentsList("studentsText.out");
 	  StudentsList<Student> actualList = new StudentsList<Student>();
 	  actualList.deserializeStudentsList("studentsText.out");
@@ -78,6 +82,33 @@ public class StudentsListTest extends Assert{
 	  expected.add(firstStudentTest);
 	  ArrayList<Student> actual = new ArrayList<Student>();
 	  actual = students.getStudentsBy(StudentsField.COURSE, '>', 4);
+	  assertEquals(actual, expected);
+  }
+  
+  @Test
+  public void getStudentsByGroup() {
+	  ArrayList<Student> expected = new ArrayList<Student>();
+	  expected.add(secondStudentTest);
+	  ArrayList<Student> actual = new ArrayList<Student>();
+	  actual = students.getStudentsBy(StudentsField.GROUP, '<', 421);
+	  assertEquals(actual, expected);
+  }
+  
+  @Test
+  public void getStudentsByGroupEqual() {
+	  ArrayList<Student> expected = new ArrayList<Student>();
+	  expected.add(secondStudentTest);
+	  ArrayList<Student> actual = new ArrayList<Student>();
+	  actual = students.getStudentsBy(StudentsField.GROUP, '=', 321);
+	  assertEquals(actual, expected);
+  }
+  
+  @Test
+  public void getStudentsByGroupNull() {
+	  ArrayList<Student> expected = new ArrayList<Student>();
+	  expected = null;
+	  ArrayList<Student> actual = new ArrayList<Student>();
+	  actual = students.getStudentsBy(StudentsField.FIRSTNAME, '*', 322);
 	  assertEquals(actual, expected);
   }
 
@@ -102,6 +133,7 @@ public class StudentsListTest extends Assert{
 	  StudentsList<Student> expectedList = new StudentsList<Student>();	  
 	  expectedList.add(firstStudentTest);
 	  expectedList.add(secondStudentTest);
+	  expectedList.add(thirdStudentTest);
 	  expectedList.saveToFile("studentsTest.txt");
 	  StudentsList<Student> actualList = new StudentsList<Student>();
 	  actualList.loadFromFile("studentsTest.txt");
@@ -113,6 +145,7 @@ public class StudentsListTest extends Assert{
 	  StudentsList<Student> expectedList = new StudentsList<Student>();	  
 	  expectedList.add(firstStudentTest);
 	  expectedList.add(secondStudentTest);
+	  expectedList.add(thirdStudentTest);
 	  expectedList.saveToXml("studentsText.xml");
 	  StudentsList<Student> actualList = new StudentsList<Student>();
 	  actualList.loadFromXml("studentsText.xml");
@@ -123,23 +156,44 @@ public class StudentsListTest extends Assert{
   public void orderByGroupTrue() {
 	  StudentsList<Student> expected = new StudentsList<Student>();
 	  expected.add(secondStudentTest);
+	  expected.add(thirdStudentTest);
 	  expected.add(firstStudentTest);
 	  StudentsList<Student> actual = new StudentsList<Student>();
 	  actual.add(secondStudentTest);
 	  actual.add(firstStudentTest);
+	  actual.add(thirdStudentTest);
 	  actual.orderBy(StudentsField.GROUP);
 	  assertEquals(actual, expected);
   }
   
   @Test
-  public void orderByGroupFalse() {
+  public void orderByFirstNameTrue() {
 	  StudentsList<Student> expected = new StudentsList<Student>();
 	  expected.add(firstStudentTest);
 	  expected.add(secondStudentTest);
+	  expected.add(thirdStudentTest);
+	  StudentsList<Student> actual = new StudentsList<Student>();
+	  actual.add(secondStudentTest);
+	  actual.add(firstStudentTest);
+	  actual.add(thirdStudentTest);
+	  
+
+	  actual.orderBy(StudentsField.FIRSTNAME);
+
+	  assertEquals(actual, expected);
+  }
+  
+  @Test
+  public void orderByMarkFalse() {
+	  StudentsList<Student> expected = new StudentsList<Student>();
+	  expected.add(secondStudentTest);
+	  expected.add(firstStudentTest);
+	  expected.add(thirdStudentTest);
 	  StudentsList<Student> actual = new StudentsList<Student>();
 	  actual.add(firstStudentTest);
 	  actual.add(secondStudentTest);
-	  actual.orderBy(StudentsField.GROUP);
+	  actual.add(thirdStudentTest);
+	  actual.orderBy(StudentsField.MARK);
 	  assertNotEquals(actual, expected);
   }
 }
