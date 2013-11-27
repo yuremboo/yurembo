@@ -18,11 +18,10 @@ import java.util.Scanner;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
-import com.java.deany.StudentsField;
 import com.java.utils.WorkWithRegex;
 import com.java.utils.WorkWithXML;
 
-public class StudentsList<E> extends ArrayList<E> implements Serializable{
+public class StudentsList<E> extends ArrayList<E> implements Serializable {
 	
 	/**
 	 * 
@@ -33,11 +32,11 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 	 * @param s - student
 	 * @return true - if student was transported to the next course, false - if not.
 	 */
-	public boolean increaseCourse(Student s){
-		int oneCourse = 100;
-		int maxCourse = 500; //max course * 100
+	public boolean increaseCourse(Student s) {
+		final int oneCourse = 100;
+		final int maxCourse = 500; //max course * 100
 		if (s.getGroup() < maxCourse) {
-			s.setGroup(s.getGroup()+oneCourse);
+			s.setGroup(s.getGroup() + oneCourse);
 			return true;
 		}
 		return false;
@@ -47,7 +46,7 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 	 * @param fileName - name of text-file with students in selected format
 	 */
     @SuppressWarnings("unchecked")
-	public void loadFromFile(String fileName){
+	public void loadFromFile(String fileName) {
     	this.clear();
 		List<Student> stud = new ArrayList<>();
         Scanner in = null;
@@ -56,11 +55,9 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-        while(in.hasNext())
-        {
+		while (in.hasNext()) {
         	String line = in.nextLine();
-            if (WorkWithRegex.checkLine(line, Student.regExp))
-            {
+            if (WorkWithRegex.checkLine(line, Student.regExp)) {
             	String[] str = line.split(" ");
                 stud.add(new Student(str[1], str[2], Double.parseDouble(str[3]), Integer.parseInt(str[4])));
             }
@@ -73,12 +70,11 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 	 * Save students list from file
 	 * @param filename - name of text-file to save students list in selected format
 	 */
-	public void saveToFile(String filename){
+	public void saveToFile(String filename) {
 		FileWriter fileWriter = null;
 		try {
 			fileWriter = new FileWriter(filename);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		String newLine = System.getProperty("line.separator");
@@ -99,8 +95,8 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 	 * @param field - parameter of StudentsField type
 	 */
 	@SuppressWarnings("unchecked")
-	public void orderBy(StudentsField field){
-		Collections.sort((List<Student>)this, new Order(field));
+	public void orderBy(StudentsField field) {
+		Collections.sort((List<Student>) this, new Order(field));
 	}
 	
 	/**
@@ -112,27 +108,25 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 	 * @param i - Double
 	 * @return StudentsList<E>
 	 */
-	public StudentsList<E> getStudentsBy(StudentsField field, Character operator, Double i)
-	{
+	public StudentsList<E> getStudentsBy(StudentsField field, Character operator, Double i)	{
 		StudentsList<E> resultStudentsList = new StudentsList<>();
-		for (E s:this){
+		for (E s:this) {
 			if (field == StudentsField.MARK)
 				switch (operator) {
-				case '=':{
+				case '=': {
 					if (i == ((Student) s).getAverageMark()) resultStudentsList.add(s);
 					break;
 				}
-				case '>':{
+				case '>': {
 					if (i < ((Student) s).getAverageMark()) resultStudentsList.add(s);
 					break;
 				}
-				case '<':{
+				case '<': {
 					if (i > ((Student) s).getAverageMark()) resultStudentsList.add(s);
 					break;
 				}
 				default:break;
-			}
-			else return null;
+			} else return null;
 		}
 		return resultStudentsList;
 	}
@@ -147,30 +141,34 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
 	 * @param i - int
 	 * @return StudentsList<E>
 	 */
-	public StudentsList<E> getStudentsBy(StudentsField field, Character operator, int i)
-	{
+	public StudentsList<E> getStudentsBy(StudentsField field, Character operator, int i) {
 		StudentsList<E> resultStudentsList = new StudentsList<>();
-		for (E s:this){
+		for (E s:this) {
 			if (field == StudentsField.GROUP || field == StudentsField.COURSE)
 				switch (operator) {
-				case '=':{
-					if (field == StudentsField.GROUP && i == ((Student) s).getGroup()) resultStudentsList.add(s);
-					if (field == StudentsField.COURSE && i == (int)(((Student) s).getGroup()/100)) resultStudentsList.add(s);
+				case '=': {
+					if (field == StudentsField.GROUP && i == ((Student) s).getGroup()) 
+						resultStudentsList.add(s);
+					if (field == StudentsField.COURSE && i == (int)(((Student) s).getGroup()/100)) 
+						resultStudentsList.add(s);
 					break;
 				}
-				case '>':{
-					if (field == StudentsField.GROUP && i < ((Student) s).getGroup()) resultStudentsList.add(s);
-					if (field == StudentsField.COURSE && i < (int)(((Student) s).getGroup()/100)) resultStudentsList.add(s);
+				case '>': {
+					if (field == StudentsField.GROUP && i < ((Student) s).getGroup()) 
+						resultStudentsList.add(s);
+					if (field == StudentsField.COURSE && i < (int)(((Student) s).getGroup()/100)) 
+						resultStudentsList.add(s);
 					break;
 				}
-				case '<':{
-					if (field == StudentsField.GROUP && i > ((Student) s).getGroup()) resultStudentsList.add(s);
-					if (field == StudentsField.COURSE && i < (int)(((Student) s).getGroup()/100)) resultStudentsList.add(s);
+				case '<': {
+					if (field == StudentsField.GROUP && i > ((Student) s).getGroup()) 
+						resultStudentsList.add(s);
+					if (field == StudentsField.COURSE && i < (int)(((Student) s).getGroup()/100)) 
+						resultStudentsList.add(s);
 					break;
 				}
 				default:break;
-			}
-			else return null;
+			} else return null;
 		}
 		return resultStudentsList;
 	}
@@ -180,16 +178,14 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
      * Serialize students list to file
      * @param fileName - Name of existing file on HDD.
      */ 
-	public void serializeStudentsList(String fileName)
-	{
-		try{
+	public void serializeStudentsList(String fileName) {
+		try {
 			FileOutputStream fos = new FileOutputStream(fileName);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(this);
 			oos.flush();
 			oos.close();
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 				// TODO: handle exception
 			e.printStackTrace();
 		}
@@ -201,30 +197,25 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
      * @param fileName - Name of serialized file before.
      */
 	@SuppressWarnings("unchecked")
-	public void deserializeStudentsList(String fileName)
-	{
+	public void deserializeStudentsList(String fileName) {
 		this.clear();
 		StudentsList<E> ts = null;
-		try{
+		try {
 			FileInputStream fis = new FileInputStream(fileName);
 			ObjectInputStream oin = new ObjectInputStream(fis);
 			ts = ((StudentsList<E>) oin.readObject());
 			oin.close();
-		}
-		catch (IOException e)
-		{
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		int maxId = ((Student)ts.get(0)).getId();
+		int maxId = ((Student) ts.get(0)).getId();
 		
 		int currentId = maxId;
-		for (E s:ts){
+		for (E s:ts) {
 			currentId = ((Student) s).getId();
-			maxId = currentId > maxId?currentId:maxId;
+			maxId = currentId > maxId ? currentId : maxId;
 		}
 		Student.setID(++maxId);
 		this.addAll(ts);
@@ -235,12 +226,10 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
      * @param xmlFileName - Name of XML-file to save students list.
      */
 	@SuppressWarnings("unchecked")
-	public void saveToXml(String xmlFileName)
-	{
+	public void saveToXml(String xmlFileName) {
 		try {
 			WorkWithXML.saveToXml((StudentsList<Student>) this, xmlFileName);	
-		} 
-		catch (ParserConfigurationException | TransformerException e) {
+		} catch (ParserConfigurationException | TransformerException e) {
 			e.printStackTrace();
 		}
 		
@@ -251,8 +240,7 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable{
      * @param xmlFileName - Name of XML-file to load students list from.
      */
     @SuppressWarnings("unchecked")
-	public void loadFromXml(String xmlFileName)
-	{
+	public void loadFromXml(String xmlFileName)	{
     	this.clear();
 		this.addAll((Collection<? extends E>) WorkWithXML.loadFromXML(xmlFileName));
 	}
