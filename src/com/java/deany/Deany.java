@@ -27,7 +27,7 @@ public class Deany {
 				System.out.println(s);
 				}
 			}
-		students.orderBy(StudentsField.MARK);  //sorting students list
+		students.orderBy(StudentsField.LASTNAME);  //sorting students list
 		for (Student s:students){
 			System.out.println(s); //print all students
 		}
