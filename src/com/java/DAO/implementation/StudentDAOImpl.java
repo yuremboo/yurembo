@@ -40,7 +40,19 @@ public class StudentDAOImpl implements StudentDAO {
 	@Override
 	public StudentsList<Student> getAllStudents() throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		Session session = null;
+		StudentsList<Student> students = new StudentsList<Student>();
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			students.addAll(session.createCriteria(Student.class).list());
+		} catch (Exception e) {
+			System.err.println(e);
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+		return students;
 	}
 
 	@Override

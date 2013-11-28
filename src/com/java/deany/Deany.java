@@ -1,6 +1,9 @@
 package com.java.deany;
 import java.sql.*;
 
+import com.java.DAO.StudentDAO;
+import com.java.DAO.implementation.StudentDAOImpl;
+
 public class Deany {
 	
     private static Connection con = null;
@@ -26,18 +29,21 @@ public class Deany {
 	}
 
 	public Deany() throws SQLException {
-		DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-		con = DriverManager.getConnection(URL, username, password);
+		StudentDAOImpl studentDAOImpl = new StudentDAOImpl();
+		students = studentDAOImpl.getAllStudents();
+		
+		//DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+		//con = DriverManager.getConnection(URL, username, password);
         
-        if(con!=null) System.out.println("Связь установлена! \n");
-        if(con==null) System.exit(0);
+        //if(con!=null) System.out.println("Связь установлена! \n");
+        //if(con==null) System.exit(0);
 		
 		
 		
 		//students.deserializeStudentsList(serializedFile);  //Serialization 
-		students.loadFromFile(textFile); 
+		//students.loadFromFile(textFile); 
 		//students.loadFromXml(xmlFile);
-		students.add(new Student("Test","Test",2.5,141)); //add new student
+		//students.add(new Student("Test","Test",2.5,141)); //add new student
 		for (Student s:students){
 			System.out.println(s); //print all students
 			if (s.getLastName().compareTo("Ivanov") == 0) {
@@ -62,11 +68,11 @@ public class Deany {
 			System.out.println(s); //print all studentsBy
 		}
 		
-		students.saveToFile(textFile);  //Save to file
-		students.serializeStudentsList(serializedFile);  //Serialization
-		students.saveToXml(xmlFile);
+		//students.saveToFile(textFile);  //Save to file
+		//students.serializeStudentsList(serializedFile);  //Serialization
+		//students.saveToXml(xmlFile);
                 
 		
-        if (con!=null)con.close();
+       // if (con!=null)con.close();
 	}
 }

@@ -1,3 +1,14 @@
 Hello! It's my Deany project on Java.
 SoftServe IT-Academy
 yurembo
+
+-----
+I'm must remember next commands:
+
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/***
+git push -u origin master
+
+git clone 
