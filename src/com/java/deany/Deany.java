@@ -8,7 +8,7 @@ public class Deany {
 	
     private static Connection con = null;
     private static final String username = "root";
-    private static final String password = "";
+    private static final String password = "root";
     private static final String URL = "jdbc:mysql://localhost:3306/deanery";
 
 	StudentsList<Student> students = new StudentsList<>();
@@ -29,14 +29,14 @@ public class Deany {
 	}
 
 	public Deany() throws SQLException {
-		StudentDAOImpl studentDAOImpl = new StudentDAOImpl();
-		students = studentDAOImpl.getAllStudents();
+		//StudentDAOImpl studentDAOImpl = new StudentDAOImpl();
+		students = Factory.getInstance().getStudentDAO().getAllStudents();
 		
 		//DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 		//con = DriverManager.getConnection(URL, username, password);
         
-        //if(con!=null) System.out.println("Связь установлена! \n");
-        //if(con==null) System.exit(0);
+       // if(con!=null) System.out.println("OK! \n");
+       // if(con==null) System.exit(0);
 		
 		
 		
@@ -44,7 +44,7 @@ public class Deany {
 		//students.loadFromFile(textFile); 
 		//students.loadFromXml(xmlFile);
 		//students.add(new Student("Test","Test",2.5,141)); //add new student
-		for (Student s:students){
+		for (Student s:students) {
 			System.out.println(s); //print all students
 			if (s.getLastName().compareTo("Ivanov") == 0) {
 				students.increaseCourse(s);
@@ -52,7 +52,7 @@ public class Deany {
 				}
 			}
 		students.orderBy(StudentsField.LASTNAME);  //sorting students list
-		for (Student s:students){
+		for (Student s:students) {
 			System.out.println(s); //print all students
 		}
 		
@@ -64,7 +64,7 @@ public class Deany {
 		StudentsList<Student> studentsBy = new StudentsList<>();
 		studentsBy.addAll(students.getStudentsBy(StudentsField.MARK,'>',4.0));
 		
-		for (Student s:studentsBy){
+		for (Student s:studentsBy) {
 			System.out.println(s); //print all studentsBy
 		}
 		

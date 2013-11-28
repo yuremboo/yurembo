@@ -34,6 +34,20 @@ public class StudentDAOImpl implements StudentDAO {
 	public void updateStudent(int studentId, Student student)
 			throws SQLException {
 		// TODO Auto-generated method stub
+		Session session = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			session.beginTransaction();
+			session.update(student);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			System.err.println("Error insert " + e);
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+
 
 	}
 
