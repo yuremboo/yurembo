@@ -11,7 +11,7 @@ public class Student implements Serializable {
 	//private static final long serialVersionUID = 1L;
 	private String lastName;
 	private String firstName;
-	private double averageMark;
+	private float averageMark;
 	private int groupNumber;
 	private int id;
 	private static int ID = 1;
@@ -29,7 +29,7 @@ public class Student implements Serializable {
 	 */
 	public Student(String lastName, 
 			String firstName, 
-			double averageMark, 
+			float averageMark, 
 			int groupNumber) {
 		this.lastName = lastName;
 		this.firstName = firstName;
@@ -68,14 +68,29 @@ public class Student implements Serializable {
 	/**
 	 * @return Student's group. Type: int.
 	 */
-	public int getGroup() {
+	public int getGroupNumber() {
 		return this.groupNumber;
 	}
 	/**
 	 * @param group - Student's group. Type: int.
 	 */
-	public void setGroup(int group)	{
+	public void setGroupNumber(int group)	{
 		this.groupNumber = group;
+	}
+	/**
+	 * 
+	 * @param averageMark
+	 */
+	public void setAverageMark(float averageMark)	{
+		this.averageMark = averageMark;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	/**
@@ -104,7 +119,7 @@ public class Student implements Serializable {
 	 * 
 	 * @param averageMark - Student's average mark
 	 */
-	public void getAverageMark(double averageMark)	{
+	public void getAverageMark(float averageMark)	{
 		this.averageMark = averageMark;
 	}
 
@@ -117,7 +132,7 @@ public class Student implements Serializable {
 			return false;
 		}
 		if (this.averageMark == ((Student) obj).getAverageMark()
-				&& this.getGroup() == ((Student) obj).getGroup()
+				&& this.getGroupNumber() == ((Student) obj).getGroupNumber()
 				&& this.getFirstName().equals(((Student) obj).getFirstName())
 				&& this.getLastName().equals(((Student) obj).getLastName())) {
 			return true;
@@ -133,7 +148,7 @@ public class Student implements Serializable {
 
 	@Override
 	public String toString() {
-		return getId() + " " + getLastName() + " " + getFirstName() + " " + getAverageMark() + " " + getGroup();
+		return getId() + " " + getLastName() + " " + getFirstName() + " " + getAverageMark() + " " + getGroupNumber();
 	}
 
 

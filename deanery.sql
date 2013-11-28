@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Хост: 127.0.0.1
--- Время создания: Ноя 28 2013 г., 12:05
--- Версия сервера: 5.6.11
--- Версия PHP: 5.5.3
+-- Хост: localhost
+-- Время создания: Ноя 28 2013 г., 23:59
+-- Версия сервера: 5.5.27
+-- Версия PHP: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- База данных: `deanery`
 --
-CREATE DATABASE IF NOT EXISTS `deanery` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `deanery`;
 
 -- --------------------------------------------------------
 
@@ -33,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `students` (
   `lastName` varchar(50) NOT NULL,
   `firstName` varchar(20) NOT NULL,
   `averageMark` float NOT NULL,
-  `groupNumber` smallint(6) NOT NULL,
+  `groupNumber` int(6) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 

@@ -27,7 +27,7 @@ public class Order implements Comparator<Student> {
 		if (field == StudentsField.MARK)
 			return (int)(arg0.getAverageMark() * magicNumber - arg1.getAverageMark() * magicNumber); 
 		if (field == StudentsField.GROUP) 
-			return arg0.getGroup() - arg1.getGroup();
+			return arg0.getGroupNumber() - arg1.getGroupNumber();
 		return 0;		
 	}
 }

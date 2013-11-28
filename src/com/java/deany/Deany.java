@@ -29,8 +29,9 @@ public class Deany {
 	}
 
 	public Deany() throws SQLException {
+		Factory.getInstance();
 		//StudentDAOImpl studentDAOImpl = new StudentDAOImpl();
-		students = Factory.getInstance().getStudentDAO().getAllStudents();
+		students = Factory.getStudentDAO().getAllStudents();
 		
 		//DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 		//con = DriverManager.getConnection(URL, username, password);

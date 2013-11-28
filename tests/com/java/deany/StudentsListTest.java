@@ -26,15 +26,15 @@ public class StudentsListTest extends Assert{
   }
   
   StudentsList<Student> students = new StudentsList<Student>();
-  Student firstStudentTest = new Student("Test", "First", 4.5, 521);
-  Student secondStudentTest = new Student("Test", "Second", 5.0, 321);
-  Student thirdStudentTest = new Student("Testt", "Third", 3.0, 441);
+  Student firstStudentTest = new Student("Test", "First", (float) 4.5, 521);
+  Student secondStudentTest = new Student("Test", "Second", (float) 5.0, 321);
+  Student thirdStudentTest = new Student("Testt", "Third", (float) 3.0, 441);
   
   @BeforeClass
   public void beforeClass() {
-	  firstStudentTest = new Student("Test", "First", 4.5, 521);
-	  secondStudentTest = new Student("Test", "Second", 5.0, 321);
-	  thirdStudentTest = new Student("Testt", "Third", 3.0, 441);
+	  firstStudentTest = new Student("Test", "First", (float) 4.5, 521);
+	  secondStudentTest = new Student("Test", "Second", (float) 5.0, 321);
+	  thirdStudentTest = new Student("Testt", "Third", (float) 3.0, 441);
   }
 
   @AfterClass
@@ -116,7 +116,7 @@ public class StudentsListTest extends Assert{
   public void increaseCourseV1() {
 	  students.increaseCourse(firstStudentTest);
 	  int expected = 521;
-	  int actual = firstStudentTest.getGroup();
+	  int actual = firstStudentTest.getGroupNumber();
 	  assertEquals(actual, expected);
   }
   
@@ -124,7 +124,7 @@ public class StudentsListTest extends Assert{
   public void increaseCourseV2() {
 	  students.increaseCourse(secondStudentTest);
 	  int expected = 421;
-	  int actual = secondStudentTest.getGroup();
+	  int actual = secondStudentTest.getGroupNumber();
 	  assertEquals(actual, expected);
   }
 

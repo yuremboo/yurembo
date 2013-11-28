@@ -35,8 +35,8 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable {
 	public boolean increaseCourse(Student s) {
 		final int oneCourse = 100;
 		final int maxCourse = 500; //max course * 100
-		if (s.getGroup() < maxCourse) {
-			s.setGroup(s.getGroup() + oneCourse);
+		if (s.getGroupNumber() < maxCourse) {
+			s.setGroupNumber(s.getGroupNumber() + oneCourse);
 			return true;
 		}
 		return false;
@@ -59,7 +59,7 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable {
         	String line = in.nextLine();
             if (WorkWithRegex.checkLine(line, Student.regExp)) {
             	String[] str = line.split(" ");
-                stud.add(new Student(str[1], str[2], Double.parseDouble(str[3]), Integer.parseInt(str[4])));
+                stud.add(new Student(str[1], str[2], Float.parseFloat(str[3]), Integer.parseInt(str[4])));
             }
         }
         in.close();    
@@ -147,23 +147,23 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable {
 			if (field == StudentsField.GROUP || field == StudentsField.COURSE)
 				switch (operator) {
 				case '=': {
-					if (field == StudentsField.GROUP && i == ((Student) s).getGroup()) 
+					if (field == StudentsField.GROUP && i == ((Student) s).getGroupNumber()) 
 						resultStudentsList.add(s);
-					if (field == StudentsField.COURSE && i == (int)(((Student) s).getGroup()/100)) 
+					if (field == StudentsField.COURSE && i == (int)(((Student) s).getGroupNumber()/100)) 
 						resultStudentsList.add(s);
 					break;
 				}
 				case '>': {
-					if (field == StudentsField.GROUP && i < ((Student) s).getGroup()) 
+					if (field == StudentsField.GROUP && i < ((Student) s).getGroupNumber()) 
 						resultStudentsList.add(s);
-					if (field == StudentsField.COURSE && i < (int)(((Student) s).getGroup()/100)) 
+					if (field == StudentsField.COURSE && i < (int)(((Student) s).getGroupNumber()/100)) 
 						resultStudentsList.add(s);
 					break;
 				}
 				case '<': {
-					if (field == StudentsField.GROUP && i > ((Student) s).getGroup()) 
+					if (field == StudentsField.GROUP && i > ((Student) s).getGroupNumber()) 
 						resultStudentsList.add(s);
-					if (field == StudentsField.COURSE && i < (int)(((Student) s).getGroup()/100)) 
+					if (field == StudentsField.COURSE && i < (int)(((Student) s).getGroupNumber()/100)) 
 						resultStudentsList.add(s);
 					break;
 				}

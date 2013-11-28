@@ -74,7 +74,7 @@ public class WorkWithXML {
 		//firstname, lastname, id, averageMark and group
 		String firstName = getTextValue(studEl,"firstname");
 		String secondName = getTextValue(studEl,"lastname");
-		double averageMark = getDoubleValue(studEl,"averageMark");
+		float averageMark = getDoubleValue(studEl,"averageMark");
 		int group = getIntValue(studEl,"group");
 		//Create a new Student with the value read from the xml nodes
 		Student e = new Student(secondName,firstName,averageMark,group);
@@ -82,8 +82,8 @@ public class WorkWithXML {
 	}
 
 
-	private static double getDoubleValue(Element studEl, String tagName) {
-		return Double.parseDouble(getTextValue(studEl,tagName));
+	private static float getDoubleValue(Element studEl, String tagName) {
+		return Float.parseFloat(getTextValue(studEl,tagName));
 	}
 
 	/**
@@ -160,7 +160,7 @@ public class WorkWithXML {
 	
 			  //group elements
 			  Element group = doc.createElement("group");
-			  group.appendChild(doc.createTextNode(String.valueOf(s.getGroup())));
+			  group.appendChild(doc.createTextNode(String.valueOf(s.getGroupNumber())));
 			  studs.appendChild(group);
 	
 			  
