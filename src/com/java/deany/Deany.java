@@ -37,9 +37,7 @@ public class Deany {
         
        // if(con!=null) System.out.println("OK! \n");
        // if(con==null) System.exit(0);
-		
-		
-		
+
 		//students.deserializeStudentsList(serializedFile);  //Serialization 
 		//students.loadFromFile(textFile); 
 		//students.loadFromXml(xmlFile);
