@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="D:/Projects/Java/Deanery2/hibernate-search-4.4.0.Final/dist/lib/required/jboss-logging-annotations-1.2.0.Beta1.jar"/>
 	<classpathentry kind="lib" path="D:/Projects/Java/Deanery2/hibernate-search-4.4.0.Final/dist/lib/required/lucene-core-3.6.2.jar"/>
 	<classpathentry kind="lib" path="D:/Projects/Java/Deanery2/hibernate-search-4.4.0.Final/dist/lib/required/paranamer-2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/MySQL/MySQL Connector J/mysql-connector-java-5.1.27-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

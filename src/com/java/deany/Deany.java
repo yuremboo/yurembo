@@ -1,6 +1,12 @@
 package com.java.deany;
+import java.sql.*;
 
 public class Deany {
+	
+    private static Connection con = null;
+    private static final String username = "root";
+    private static final String password = "";
+    private static final String URL = "jdbc:mysql://localhost:3306/deanery";
 
 	StudentsList<Student> students = new StudentsList<>();
         public final String serializedFile = "students.out";
@@ -11,10 +17,22 @@ public class Deany {
         	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new Deany();
+		try {
+			new Deany();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	public Deany() {
+	public Deany() throws SQLException {
+		DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+		con = DriverManager.getConnection(URL, username, password);
+        
+        if(con!=null) System.out.println("Связь установлена! \n");
+        if(con==null) System.exit(0);
+		
+		
 		
 		//students.deserializeStudentsList(serializedFile);  //Serialization 
 		students.loadFromFile(textFile); 
@@ -48,5 +66,7 @@ public class Deany {
 		students.serializeStudentsList(serializedFile);  //Serialization
 		students.saveToXml(xmlFile);
                 
+		
+        if (con!=null)con.close();
 	}
 }

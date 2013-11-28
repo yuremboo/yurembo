@@ -2,7 +2,6 @@ package com.java.deany;
 
 import java.io.Serializable;
 
-
 enum StudentsField { ID, FIRSTNAME, LASTNAME, MARK, GROUP, COURSE };
 /**
  * @author yurembo
@@ -17,6 +16,10 @@ public class Student implements Serializable {
 	private int id;
 	private static int ID = 1;
 	public static String regExp = "(([\\d]*)[\\s][A-Z]{1}[a-z-]*[\\s][A-Z]{1}[a-z-]*[\\s][1-5]\\.[\\d][\\s][1-5][\\d]{2})";
+	
+	public Student() {
+		
+	}
 	/**
 	 * 
 	 * @param lastName - last name of student. Type: String.
@@ -82,6 +85,29 @@ public class Student implements Serializable {
 	public static void setID(int id) {
 		Student.ID = id;
 	}
+	/**
+	 * 
+	 * @param firstName - student's firstname
+	 */
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	/**
+	 * 
+	 * @param lastName - student's lastname
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	/**
+	 * 
+	 * @param averageMark - Student's average mark
+	 */
+	public void getAverageMark(double averageMark)	{
+		this.averageMark = averageMark;
+	}
+
 	
 	@Override
 	public boolean equals(Object obj) {
