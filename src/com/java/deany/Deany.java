@@ -45,27 +45,24 @@ public class Deany {
 		//students.add(new Student("Test","Test",2.5,141)); //add new student
 		for (Student s:students) {
 			System.out.println(s); //print all students
-			if (s.getLastName().compareTo("Ivanov") == 0) {
-				students.increaseCourse(s);
-				System.out.println(s);
-				}
-			}
-		students.orderBy(StudentsField.LASTNAME);  //sorting students list
-		for (Student s:students) {
-			System.out.println(s); //print all students
 		}
+		
+		//students.orderBy(StudentsField.LASTNAME);  //sorting students list
+		//for (Student s:students) {
+		//	System.out.println(s); //print all students
+		//}
 		
 		/*
 		 * overloaded method StudentsList<E> getStudentsBy(StudentsField field, Character operator, Double i)
 		 * 					 StudentsList<E> getStudentsBy(StudentsField field, Character operator, int i)
 		 */
 		
-		StudentsList<Student> studentsBy = new StudentsList<>();
-		studentsBy.addAll(students.getStudentsBy(StudentsField.MARK,'>',4.0));
+		//StudentsList<Student> studentsBy = new StudentsList<>();
+		//studentsBy.addAll(students.getStudentsBy(StudentsField.MARK,'>',4.0));
 		
-		for (Student s:studentsBy) {
-			System.out.println(s); //print all studentsBy
-		}
+		//for (Student s:studentsBy) {
+		//	System.out.println(s); //print all studentsBy
+		//}
 		
 		//students.saveToFile(textFile);  //Save to file
 		//students.serializeStudentsList(serializedFile);  //Serialization

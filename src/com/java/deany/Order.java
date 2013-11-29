@@ -2,8 +2,6 @@ package com.java.deany;
 
 import java.util.Comparator;
 
-import com.java.deany.StudentsField;
-
 public class Order implements Comparator<Student> {
 	private StudentsField field;
 	/**

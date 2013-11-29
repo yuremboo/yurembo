@@ -10,8 +10,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.AfterClass;
 
-import com.java.deany.StudentsField;
-
 public class StudentsListTest extends Assert{
   @Test(dataProvider = "dp")
   public void f(Integer n, String s) {

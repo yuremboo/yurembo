@@ -3,7 +3,6 @@ package com.java.DAO;
 import java.sql.SQLException;
 
 import com.java.deany.*;
-import com.java.utils.*;
 
 public interface StudentDAO {
 	void addStudent(Student student) throws SQLException;
