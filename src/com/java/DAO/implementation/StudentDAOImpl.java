@@ -75,7 +75,19 @@ public class StudentDAOImpl implements StudentDAO {
 	@Override
 	public Student getStudentById(int studentId) throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		Session session = null;
+		Student student = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			student = (Student) session.load(Student.class, studentId);
+		} catch (Exception e) {
+			System.err.println(e);
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+		return student;
 	}
 
 	@Override

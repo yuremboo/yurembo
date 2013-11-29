@@ -1,6 +1,8 @@
 package com.java.deany;
 import java.sql.*;
 
+import org.hibernate.Session;
+
 import com.java.DAO.StudentDAO;
 import com.java.DAO.implementation.StudentDAOImpl;
 
@@ -29,9 +31,16 @@ public class Deany {
 	}
 
 	public Deany() throws SQLException {
-		Factory.getInstance();
+		//Factory.getInstance();
 		//StudentDAOImpl studentDAOImpl = new StudentDAOImpl();
 		students = Factory.getStudentDAO().getAllStudents();
+		for (Student s:students) {
+			System.out.println(s); //print all students
+		}
+		Student stud = null;
+		stud = Factory.getStudentDAO().getStudentById(3);
+		
+		System.out.println(stud);
 		
 		//DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 		//con = DriverManager.getConnection(URL, username, password);
@@ -43,9 +52,20 @@ public class Deany {
 		//students.loadFromFile(textFile); 
 		//students.loadFromXml(xmlFile);
 		//students.add(new Student("Test","Test",2.5,141)); //add new student
+		
+		
+		/* 
+		Student newStudent = new Student();
+		newStudent.setFirstName("Petro");
+		newStudent.setLastName("Petrov");
+		newStudent.setAverageMark(4);
+		newStudent.setGroupNumber(141);
+		Factory.getStudentDAO().addStudent(newStudent);
+		students = Factory.getStudentDAO().getAllStudents();
 		for (Student s:students) {
 			System.out.println(s); //print all students
 		}
+		*/
 		
 		//students.orderBy(StudentsField.LASTNAME);  //sorting students list
 		//for (Student s:students) {
