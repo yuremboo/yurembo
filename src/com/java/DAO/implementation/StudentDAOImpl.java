@@ -2,12 +2,14 @@ package com.java.DAO.implementation;
 
 import java.sql.SQLException;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.java.DAO.StudentDAO;
 import com.java.deany.Group;
 import com.java.deany.Student;
 import com.java.deany.StudentsList;
+
 import static com.java.utils.HibernateUtil.getSessionFactory;
 
 public class StudentDAOImpl implements StudentDAO {
@@ -119,6 +121,10 @@ public class StudentDAOImpl implements StudentDAO {
 		try {
 			session = getSessionFactory().getCurrentSession();
 			session.beginTransaction();
+			int groupNumber = group.getGroupNumber();
+			Query query = session.createQuery("from students where groupNumber = :groupNumber").setInteger("groupNumber", groupNumber);
+			students = ((StudentsList<Student>) query.list());
+			session.getTransaction().commit();
 		} catch (Exception e) {
 			System.err.println(e);
 		} 

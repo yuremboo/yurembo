@@ -38,7 +38,7 @@ public class Deany {
 			System.out.println(s); //print all students
 		}
 		Student stud = null;
-		stud = Factory.getStudentDAO().getStudentById(3);
+		stud = Factory.getStudentDAO().getStudentById(5);
 		
 		System.out.println(stud);
 		
