@@ -62,7 +62,7 @@ public class Student implements Serializable {
 	 * 
 	 * @return Student's average mark. Type: double.
 	 */
-	public double getAverageMark()	{
+	public float getAverageMark()	{
 		return this.averageMark;
 	}
 	/**
@@ -114,13 +114,6 @@ public class Student implements Serializable {
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-	/**
-	 * 
-	 * @param averageMark - Student's average mark
-	 */
-	public void getAverageMark(float averageMark)	{
-		this.averageMark = averageMark;
 	}
 
 	

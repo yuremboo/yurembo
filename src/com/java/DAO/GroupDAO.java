@@ -14,6 +14,6 @@ public interface GroupDAO {
 	Group getGroupById(int groupId) throws SQLException;
 	void deleteGroup(Group group) throws SQLException;
 	Collection getGroupsByCathedra(/*Cathedra cathedra*/) throws SQLException;
-	Collection getGroupsByMark(int averageMark) throws SQLException;
+	//Collection getGroupsByMark(int averageMark) throws SQLException;
 
 }
