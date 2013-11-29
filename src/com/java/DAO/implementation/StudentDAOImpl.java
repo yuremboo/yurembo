@@ -5,9 +5,10 @@ import java.sql.SQLException;
 import org.hibernate.Session;
 
 import com.java.DAO.StudentDAO;
+import com.java.deany.Group;
 import com.java.deany.Student;
 import com.java.deany.StudentsList;
-import com.java.utils.HibernateUtil;
+import static com.java.utils.HibernateUtil.getSessionFactory;
 
 public class StudentDAOImpl implements StudentDAO {
 
@@ -16,7 +17,7 @@ public class StudentDAOImpl implements StudentDAO {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
-			session = HibernateUtil.getSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			session.beginTransaction();
 			session.save(student);
 			session.getTransaction().commit();
@@ -38,7 +39,7 @@ public class StudentDAOImpl implements StudentDAO {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
-			session = HibernateUtil.getSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			session.beginTransaction();
 			session.update(student);
 			session.getTransaction().commit();
@@ -59,7 +60,7 @@ public class StudentDAOImpl implements StudentDAO {
 		Session session = null;
 		StudentsList<Student> students = new StudentsList<Student>();
 		try {
-			session = HibernateUtil.getSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			students.addAll(session.createCriteria(Student.class).list());
 		} catch (Exception e) {
 			System.err.println(e);
@@ -78,7 +79,7 @@ public class StudentDAOImpl implements StudentDAO {
 		Session session = null;
 		Student student = null;
 		try {
-			session = HibernateUtil.getSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			student = (Student) session.load(Student.class, studentId);
 		} catch (Exception e) {
 			System.err.println(e);
@@ -93,13 +94,34 @@ public class StudentDAOImpl implements StudentDAO {
 	@Override
 	public void deleteStudent(Student student) throws SQLException {
 		// TODO Auto-generated method stub
+		Session session = null;
+	    try {
+	    	session = getSessionFactory().openSession();
+	    	session.beginTransaction();
+	    	session.delete(student);
+	    	session.getTransaction().commit();
+	    } catch (Exception e) {
+	    	System.err.println(e);
+	    } finally {
+	      if (session != null && session.isOpen()) {
+	        session.close();
+	      }
+	    }
 
 	}
 
 	@Override
-	public StudentsList<Student> getStudentsByGroup(int groupNumber)
+	public StudentsList<Student> getStudentsByGroup(Group group)
 			throws SQLException {
 		// TODO Auto-generated method stub
+		Session session = null;
+		StudentsList<Student> students = null;
+		try {
+			session = getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+		} catch (Exception e) {
+			System.err.println(e);
+		} 
 		return null;
 	}
 

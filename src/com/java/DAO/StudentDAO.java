@@ -10,6 +10,6 @@ public interface StudentDAO {
 	StudentsList<Student> getAllStudents() throws SQLException;
 	Student getStudentById(int studentId) throws SQLException;
 	void deleteStudent(Student student) throws SQLException;
-	StudentsList<Student> getStudentsByGroup(int groupNumber) throws SQLException;
+	StudentsList<Student> getStudentsByGroup(Group group) throws SQLException;
 	StudentsList<Student> getStudentsByMark(int averageMark) throws SQLException;
 }
