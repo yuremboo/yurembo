@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Ноя 29 2013 г., 12:28
+-- Время создания: Дек 02 2013 г., 09:58
 -- Версия сервера: 5.6.11
 -- Версия PHP: 5.5.3
 
@@ -25,21 +25,22 @@ USE `deanery`;
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `cathedra`
+-- Структура таблицы `departments`
 --
 
-CREATE TABLE IF NOT EXISTS `cathedra` (
-  `cathedraId` int(11) NOT NULL AUTO_INCREMENT,
-  `cathedraName` varchar(100) NOT NULL,
-  PRIMARY KEY (`cathedraId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+CREATE TABLE IF NOT EXISTS `departments` (
+  `departmentId` int(11) NOT NULL AUTO_INCREMENT,
+  `departmentName` varchar(100) NOT NULL,
+  PRIMARY KEY (`departmentId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Дамп данных таблицы `cathedra`
+-- Дамп данных таблицы `departments`
 --
 
-INSERT INTO `cathedra` (`cathedraId`, `cathedraName`) VALUES
-(1, 'CSN');
+INSERT INTO `departments` (`departmentId`, `departmentName`) VALUES
+(1, 'CSN'),
+(2, 'PI');
 
 -- --------------------------------------------------------
 
@@ -49,43 +50,52 @@ INSERT INTO `cathedra` (`cathedraId`, `cathedraName`) VALUES
 
 CREATE TABLE IF NOT EXISTS `groups` (
   `groupNumber` int(11) NOT NULL,
-  `groupName` varchar(100) NOT NULL,
-  `specId` int(11) NOT NULL,
-  `curatorId` int(11) NOT NULL,
+  `departmentId` int(11) NOT NULL,
+  `curator` varchar(100) NOT NULL,
   PRIMARY KEY (`groupNumber`),
-  KEY `specId` (`specId`),
-  KEY `specId_2` (`specId`),
-  KEY `curatorId` (`curatorId`)
+  KEY `specId` (`departmentId`),
+  KEY `specId_2` (`departmentId`),
+  KEY `curatorId` (`curator`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `groups`
 --
 
-INSERT INTO `groups` (`groupNumber`, `groupName`, `specId`, `curatorId`) VALUES
-(521, 'CSN 5 course', 1, 1);
+INSERT INTO `groups` (`groupNumber`, `departmentId`, `curator`) VALUES
+(111, 3, '5'),
+(121, 1, '2'),
+(122, 1, '3'),
+(141, 2, '4'),
+(221, 1, '7'),
+(241, 2, '8'),
+(321, 1, '9'),
+(342, 2, '10'),
+(421, 1, '16'),
+(521, 1, '1'),
+(541, 2, '15');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `marks`
+-- Структура таблицы `projects`
 --
 
-CREATE TABLE IF NOT EXISTS `marks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studentId` int(11) NOT NULL,
-  `subject` varchar(100) NOT NULL,
-  `mark` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `studentId` (`studentId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+CREATE TABLE IF NOT EXISTS `projects` (
+  `projectId` int(11) NOT NULL AUTO_INCREMENT,
+  `projectName` varchar(255) NOT NULL,
+  PRIMARY KEY (`projectId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп данных таблицы `marks`
+-- Дамп данных таблицы `projects`
 --
 
-INSERT INTO `marks` (`id`, `studentId`, `subject`, `mark`) VALUES
-(1, 3, 'Java', 5);
+INSERT INTO `projects` (`projectId`, `projectName`) VALUES
+(1, 'Hibernate Query Language'),
+(2, 'Criteria Queries'),
+(3, 'Hibernate Native SQL'),
+(4, 'Hibernate Caching');
 
 -- --------------------------------------------------------
 
@@ -102,57 +112,34 @@ CREATE TABLE IF NOT EXISTS `students` (
   PRIMARY KEY (`id`),
   KEY `groupNumber` (`groupNumber`),
   KEY `groupNumber_2` (`groupNumber`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Дамп данных таблицы `students`
 --
 
 INSERT INTO `students` (`id`, `lastName`, `firstName`, `averageMark`, `groupNumber`) VALUES
-(3, 'Student', 'First', 5, 521);
+(3, 'Student', 'First', 5, 521),
+(4, 'Rooney', 'Wayne', 5, 521),
+(5, 'Ramsey', 'Aaron', 4, 241),
+(6, 'Cole', 'Jow', 4, 121),
+(7, 'Messi', 'Lionel', 5, 541),
+(8, 'Ronaldo', 'Cristiano', 4.5, 531),
+(9, 'Iniesta', 'Andres', 4.5, 541),
+(10, 'Ribery', 'Frank', 4, 421),
+(11, 'Hart', 'Joe', 3.5, 311);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `teachers`
+-- Структура таблицы `studentsprojects`
 --
 
-CREATE TABLE IF NOT EXISTS `teachers` (
-  `teacherId` int(11) NOT NULL AUTO_INCREMENT,
-  `tFirstName` varchar(50) NOT NULL,
-  `tSecondName` varchar(50) NOT NULL,
-  PRIMARY KEY (`teacherId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Дамп данных таблицы `teachers`
---
-
-INSERT INTO `teachers` (`teacherId`, `tFirstName`, `tSecondName`) VALUES
-(1, 'First', 'Teacher');
-
---
--- Ограничения внешнего ключа сохраненных таблиц
---
-
---
--- Ограничения внешнего ключа таблицы `groups`
---
-ALTER TABLE `groups`
-  ADD CONSTRAINT `groups_ibfk_2` FOREIGN KEY (`curatorId`) REFERENCES `teachers` (`teacherId`),
-  ADD CONSTRAINT `groups_ibfk_1` FOREIGN KEY (`specId`) REFERENCES `cathedra` (`cathedraId`);
-
---
--- Ограничения внешнего ключа таблицы `marks`
---
-ALTER TABLE `marks`
-  ADD CONSTRAINT `marks_ibfk_1` FOREIGN KEY (`studentId`) REFERENCES `students` (`id`);
-
---
--- Ограничения внешнего ключа таблицы `students`
---
-ALTER TABLE `students`
-  ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`groupNumber`) REFERENCES `groups` (`groupNumber`);
+CREATE TABLE IF NOT EXISTS `studentsprojects` (
+  `id` int(11) NOT NULL,
+  `projectId` int(11) NOT NULL,
+  KEY `studentId` (`id`,`projectId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

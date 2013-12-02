@@ -1,25 +1,30 @@
 package com.java.deany;
 import java.sql.*;
+import java.util.Collection;
+import java.util.Iterator;
 
-import org.hibernate.Session;
+import com.java.deany.entity.Department;
+import com.java.deany.entity.Group;
+import com.java.deany.entity.Project;
+import com.java.deany.entity.Student;
 
-import com.java.DAO.StudentDAO;
-import com.java.DAO.implementation.StudentDAOImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 public class Deany {
 	
+	/*
     private static Connection con = null;
     private static final String username = "root";
     private static final String password = "root";
     private static final String URL = "jdbc:mysql://localhost:3306/deanery";
-
+*/
 	StudentsList<Student> students = new StudentsList<>();
         public final String serializedFile = "students.out";
         public final String textFile = "students.txt";
         public final String xmlFile = "students.xml";
-        //public static String regExp = "(([\\d]*)[\\s][A-Z]{1}[a-z-]*[\\s][A-Z]{1}[a-z-]*[\\s][1-5]\\.[\\d][\\s][1-5][\\d]{2})";
-        
-        	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
@@ -31,16 +36,43 @@ public class Deany {
 	}
 
 	public Deany() throws SQLException {
-		//Factory.getInstance();
-		//StudentDAOImpl studentDAOImpl = new StudentDAOImpl();
+		
+		Logger log = LogManager.getLogger(Deany.class.getName());
+
 		students = Factory.getStudentDAO().getAllStudents();
 		for (Student s:students) {
 			System.out.println(s); //print all students
 		}
-		Student stud = null;
-		stud = Factory.getStudentDAO().getStudentById(5);
 		
-		System.out.println(stud);
+		
+		//Group g = new Group();
+		Collection groups = Factory.getGroupDAO().getAllGroups();
+		Iterator iterator = groups.iterator();
+		while (iterator.hasNext()) {
+			Group group = (Group) iterator.next();
+			System.out.println(group);
+		}
+		
+		Collection departments = Factory.getDepartmentDAO().getAllDepartments();
+		iterator = departments.iterator();
+		while (iterator.hasNext()) {
+			Department dep = (Department) iterator.next();
+			System.out.println(dep);
+		}
+		
+		Collection projects = Factory.getProjectDAO().getAllProjects();
+		iterator = projects.iterator();
+		while (iterator.hasNext()) {
+			Project project = (Project) iterator.next();
+			System.out.println(project);
+		}
+		
+
+		
+		
+		
+		log.trace("Exiting application."); 
+		
 		
 		//DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 		//con = DriverManager.getConnection(URL, username, password);

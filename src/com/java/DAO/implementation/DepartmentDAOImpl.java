@@ -7,29 +7,26 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.java.DAO.GroupDAO;
+import com.java.DAO.DepartmentDAO;
 import com.java.deany.Deany;
 import com.java.deany.entity.Department;
-import com.java.deany.entity.Group;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class GroupDAOImpl implements GroupDAO {
-	
+public class DepartmentDAOImpl implements DepartmentDAO {
+
 	static Logger log = LogManager.getLogger(Deany.class.getName());
-
 	@Override
-	public void addGroup(Group group) throws SQLException {
+	public void addDepartment(Department department) throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
 			session = getSessionFactory().openSession();
 			session.beginTransaction();
-			session.save(group);
+			session.save(department);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			log.error("Error insert " + e);
@@ -41,13 +38,14 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public void updateGroup(int groupId, Group group) throws SQLException {
+	public void updateDepartment(int departmentId, Department department)
+			throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
 			session = getSessionFactory().openSession();
 			session.beginTransaction();
-			session.update(group);
+			session.update(department);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			log.error("Error insert " + e);
@@ -59,13 +57,13 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public Collection<Group> getAllGroups() throws SQLException {
+	public Collection<Department> getAllDepartments() throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
-		List<Group> groups = new ArrayList<Group>();
+		List<Department> departments = new ArrayList<Department>();
 		try {
 			session = getSessionFactory().openSession();
-			groups = session.createCriteria(Group.class).list();
+			departments = session.createCriteria(Department.class).list();
 		} catch (Exception e) {
 			log.error(e);
 		} finally {
@@ -73,17 +71,17 @@ public class GroupDAOImpl implements GroupDAO {
 				session.close();
 			}
 		}
-		return groups;
+		return departments;
 	}
 
 	@Override
-	public Group getGroupByNumber(int groupNumber) throws SQLException {
+	public Department getDepartmentById(int departmentId) throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
-		Group group = null;
+		Department department = null;
 		try {
 			session = getSessionFactory().openSession();
-			group = (Group) session.load(Group.class, groupNumber);
+			department = (Department) session.load(Department.class, departmentId);
 		} catch (Exception e) {
 			log.error(e);
 		} finally {
@@ -91,17 +89,17 @@ public class GroupDAOImpl implements GroupDAO {
 				session.close();
 			}
 		}
-		return group;
+		return department;
 	}
 
 	@Override
-	public void deleteGroup(Group group) throws SQLException {
+	public void deleteDepartment(Department department) throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
 	    try {
 	    	session = getSessionFactory().openSession();
 	    	session.beginTransaction();
-	    	session.delete(group);
+	    	session.delete(department);
 	    	session.getTransaction().commit();
 	    } catch (Exception e) {
 	    	log.error(e);
@@ -111,27 +109,5 @@ public class GroupDAOImpl implements GroupDAO {
 	      }
 	    }
 	}
-
-	@Override
-	public Collection<Group> getGroupsByDepartment(Department department)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		Session session = null;
-		List<Group> groups = new ArrayList<Group>();
-		try {
-			session = getSessionFactory().getCurrentSession();
-			session.beginTransaction();
-			int departmentId = department.getDepartmentId();
-			Query query = session.createQuery("from Group G where G.departmentId = " + departmentId);
-			groups = query.list();
-			session.getTransaction().commit();
-		} catch (Exception e) {
-			log.error(e);
-		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
-		}
-		return groups;
-	}
+	
 }

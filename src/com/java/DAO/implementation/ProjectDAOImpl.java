@@ -12,18 +12,17 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.java.DAO.GroupDAO;
+import com.java.DAO.ProjectDAO;
 import com.java.deany.Deany;
-import com.java.deany.entity.Department;
-import com.java.deany.entity.Group;
+import com.java.deany.entity.Project;
+import com.java.deany.entity.Student;
 
-
-public class GroupDAOImpl implements GroupDAO {
+public class ProjectDAOImpl implements ProjectDAO {
 	
 	static Logger log = LogManager.getLogger(Deany.class.getName());
 
 	@Override
-	public void addGroup(Group group) throws SQLException {
+	public void addProject(Project group) throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
@@ -41,13 +40,14 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public void updateGroup(int groupId, Group group) throws SQLException {
+	public void updateProject(int projectId, Project project)
+			throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
 			session = getSessionFactory().openSession();
 			session.beginTransaction();
-			session.update(group);
+			session.update(project);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			log.error("Error insert " + e);
@@ -59,13 +59,13 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public Collection<Group> getAllGroups() throws SQLException {
+	public Collection<Project> getAllProjects() throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
-		List<Group> groups = new ArrayList<Group>();
+		List<Project> projects = new ArrayList<Project>();
 		try {
 			session = getSessionFactory().openSession();
-			groups = session.createCriteria(Group.class).list();
+			projects = session.createCriteria(Project.class).list();
 		} catch (Exception e) {
 			log.error(e);
 		} finally {
@@ -73,17 +73,17 @@ public class GroupDAOImpl implements GroupDAO {
 				session.close();
 			}
 		}
-		return groups;
+		return projects;
 	}
 
 	@Override
-	public Group getGroupByNumber(int groupNumber) throws SQLException {
+	public Project getProjectById(int projectId) throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
-		Group group = null;
+		Project project = null;
 		try {
 			session = getSessionFactory().openSession();
-			group = (Group) session.load(Group.class, groupNumber);
+			project = (Project) session.load(Project.class, projectId);
 		} catch (Exception e) {
 			log.error(e);
 		} finally {
@@ -91,17 +91,17 @@ public class GroupDAOImpl implements GroupDAO {
 				session.close();
 			}
 		}
-		return group;
+		return project;
 	}
 
 	@Override
-	public void deleteGroup(Group group) throws SQLException {
+	public void deleteProject(Project project) throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
 	    try {
 	    	session = getSessionFactory().openSession();
 	    	session.beginTransaction();
-	    	session.delete(group);
+	    	session.delete(project);
 	    	session.getTransaction().commit();
 	    } catch (Exception e) {
 	    	log.error(e);
@@ -113,17 +113,21 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public Collection<Group> getGroupsByDepartment(Department department)
+	public Collection<Project> getProjectsByStudent(Student student)
 			throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
-		List<Group> groups = new ArrayList<Group>();
+		List<Project> projects = new ArrayList<Project>();
 		try {
 			session = getSessionFactory().getCurrentSession();
 			session.beginTransaction();
-			int departmentId = department.getDepartmentId();
-			Query query = session.createQuery("from Group G where G.departmentId = " + departmentId);
-			groups = query.list();
+			int id = student.getId();
+			Query query = session.createQuery(
+					" select P " 
+							+ " from Project P INNER JOIN P.students student" 
+							+ " where student.id = :id "
+							).setInteger("id", id);
+			projects = query.list();
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			log.error(e);
@@ -132,6 +136,7 @@ public class GroupDAOImpl implements GroupDAO {
 				session.close();
 			}
 		}
-		return groups;
+		return projects;
 	}
+
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.java.deany.entity.Group" table="groups"  lazy="false">
+		<id column="groupNumber" name="groupNumber" type="java.lang.Integer"/>
+		<property column="departmentId" name="departmentId" type="java.lang.Integer"/>
+		<property column="curator" name="curator" type="java.lang.String"/>
+		<set name="students" lazy="false">
+      		<key column="groupNumber"/>
+      		<one-to-many class="com.java.deany.entity.Student"/>
+    	</set>
+	</class>
+</hibernate-mapping>

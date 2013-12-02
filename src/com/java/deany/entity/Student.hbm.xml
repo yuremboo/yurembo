@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.java.deany.Student" table="students"  lazy="false">
+	<class name="com.java.deany.entity.Student" table="students"  lazy="false">
 		<id column="id" name="id" type="java.lang.Integer">
 			<generator class="increment"/>
 		</id>
@@ -12,5 +12,9 @@
 		<property column="firstName" name="firstName" type="java.lang.String"/>
 		<property column="averageMark" name="averageMark" type="java.lang.Float"/>
 		<property column="groupNumber" name="groupNumber" type="java.lang.Integer"/>
+		<set name="projects" table="studentsprojects" lazy="false">
+			<key column="id"/>
+			<many-to-many column="projectId" class="com.java.deany.entity.Project"/>
+		</set>
 	</class>
 </hibernate-mapping>

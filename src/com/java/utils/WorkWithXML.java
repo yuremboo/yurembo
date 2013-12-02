@@ -18,8 +18,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.java.deany.Student;
 import com.java.deany.StudentsList;
+import com.java.deany.entity.Student;
 
 public class WorkWithXML {
 	/**

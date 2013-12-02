@@ -20,6 +20,10 @@
     
     <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
     <property name="hbm2ddl.auto">validate</property>
-    <mapping resource="com/java/deany/Student.hbm.xml"/>
+    
+    <mapping resource="com/java/deany/entity/Student.hbm.xml"/>
+    <mapping resource="com/java/deany/entity/Department.hbm.xml"/>
+    <mapping resource="com/java/deany/entity/Group.hbm.xml"/>
+    <mapping resource="com/java/deany/entity/Project.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

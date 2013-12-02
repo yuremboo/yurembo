@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.java.deany.entity.Project" table="projects"  lazy="false">
+		<id column="projectId" name="projectId" type="java.lang.Integer">
+			<generator class="increment"/>
+		</id>
+		<property column="projectName" name="projectName" type="java.lang.String"/>
+		<set name="students" table="studentsprojects" lazy="false">
+			<key column="projectId"/>
+			<many-to-many column="id" class="com.java.deany.entity.Student"/>
+		</set>
+	</class>
+</hibernate-mapping>
