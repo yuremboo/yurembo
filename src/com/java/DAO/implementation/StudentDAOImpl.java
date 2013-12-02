@@ -19,7 +19,7 @@ import static com.java.utils.HibernateUtil.getSessionFactory;
 
 public class StudentDAOImpl implements StudentDAO {
 	
-	static Logger log = LogManager.getLogger(Deany.class.getName());
+	static Logger log = LogManager.getLogger(StudentDAOImpl.class.getName());
 
 	@Override
 	public void addStudent(Student student) throws SQLException {

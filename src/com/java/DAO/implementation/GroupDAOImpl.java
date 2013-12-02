@@ -20,7 +20,7 @@ import com.java.deany.entity.Group;
 
 public class GroupDAOImpl implements GroupDAO {
 	
-	static Logger log = LogManager.getLogger(Deany.class.getName());
+	static Logger log = LogManager.getLogger(GroupDAOImpl.class.getName());
 
 	@Override
 	public void addGroup(Group group) throws SQLException {

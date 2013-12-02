@@ -13,22 +13,21 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.java.DAO.ProjectDAO;
-import com.java.deany.Deany;
 import com.java.deany.entity.Project;
 import com.java.deany.entity.Student;
 
 public class ProjectDAOImpl implements ProjectDAO {
 	
-	static Logger log = LogManager.getLogger(Deany.class.getName());
+	static Logger log = LogManager.getLogger(ProjectDAOImpl.class.getName());
 
 	@Override
-	public void addProject(Project group) throws SQLException {
+	public void addProject(Project project) throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
 			session = getSessionFactory().openSession();
 			session.beginTransaction();
-			session.save(group);
+			session.save(project);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			log.error("Error insert " + e);

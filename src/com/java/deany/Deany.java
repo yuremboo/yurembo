@@ -60,15 +60,18 @@ public class Deany {
 			System.out.println(dep);
 		}
 		
+		
+		Project project = new Project();
+		
+		
+		Factory.getProjectDAO().deleteProject(Factory.getProjectDAO().getProjectById(7));
+		
 		Collection projects = Factory.getProjectDAO().getAllProjects();
 		iterator = projects.iterator();
 		while (iterator.hasNext()) {
-			Project project = (Project) iterator.next();
+			project = (Project) iterator.next();
 			System.out.println(project);
 		}
-		
-
-		
 		
 		
 		log.trace("Exiting application."); 

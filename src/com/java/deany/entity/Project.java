@@ -10,7 +10,7 @@ public class Project {
 	private String projectName;
 	private Set students = new HashSet();
 	
-	Project() {
+	public Project() {
 		
 	}
 	

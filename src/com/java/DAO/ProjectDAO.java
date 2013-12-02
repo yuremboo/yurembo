@@ -7,7 +7,7 @@ import com.java.deany.entity.Project;
 import com.java.deany.entity.Student;
 
 public interface ProjectDAO {
-	void addProject(Project group) throws SQLException;
+	void addProject(Project project) throws SQLException;
 	void updateProject(int projectId, Project project) throws SQLException;
 	Collection<Project> getAllProjects() throws SQLException;
 	Project getProjectById(int projectId) throws SQLException;

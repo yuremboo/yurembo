@@ -14,15 +14,6 @@ public class Factory {
 	private static GroupDAO groupDAO = null;
 	private static DepartmentDAO departmentDAO = null;
 	private static ProjectDAO projectDAO = null;
-	//private static Factory instance = null;
-	
-	/*
-	public static synchronized Factory getInstance() {
-		if (instance == null) {
-			instance = new Factory();
-		}
-		return instance;
-	}*/
 	
 	public static StudentDAO getStudentDAO() {
 		if (studentDAO == null) {

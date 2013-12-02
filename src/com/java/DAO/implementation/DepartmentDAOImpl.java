@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 
 public class DepartmentDAOImpl implements DepartmentDAO {
 
-	static Logger log = LogManager.getLogger(Deany.class.getName());
+	static Logger log = LogManager.getLogger(DepartmentDAOImpl.class.getName());
 	@Override
 	public void addDepartment(Department department) throws SQLException {
 		// TODO Auto-generated method stub
