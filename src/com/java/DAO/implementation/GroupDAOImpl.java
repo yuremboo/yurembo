@@ -13,7 +13,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.java.DAO.GroupDAO;
-import com.java.deany.Deany;
 import com.java.deany.entity.Department;
 import com.java.deany.entity.Group;
 
@@ -134,4 +133,5 @@ public class GroupDAOImpl implements GroupDAO {
 		}
 		return groups;
 	}
+	
 }

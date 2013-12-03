@@ -42,6 +42,7 @@ public class GroupDAOImplTest extends Assert {
 	  ArrayList<Group> expected = new ArrayList<Group>();
 	  expected.addAll(Factory.getGroupDAO().getAllGroups());
 	  expected.add(group);
+	  
 	  Factory.getGroupDAO().addGroup(group);
 	  ArrayList<Group> actual = new ArrayList<Group>();
 	  actual.addAll(Factory.getGroupDAO().getAllGroups());
@@ -63,18 +64,12 @@ public class GroupDAOImplTest extends Assert {
   }
 
   @Test
-  public void getAllGroups() {
-	  
-    //throw new RuntimeException("Test not implemented");
-  }
-
-  @Test
   public void getGroupByNumber() throws SQLException {
 	  Group expected = Factory.getGroupDAO().getGroupByNumber(111);
 	  Group actual = new Group();
 	  actual.setGroupNumber(111);
 	  actual.setDepartmentId(3);
-	  actual.setCurator("First");
+	  actual.setCurator("first");
 	  Group excepted = Factory.getGroupDAO().getGroupByNumber(0);
 	  assertEquals(actual, expected);
     //throw new RuntimeException("Test not implemented");

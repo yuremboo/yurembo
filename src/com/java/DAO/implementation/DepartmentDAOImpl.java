@@ -11,16 +11,15 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 
 import com.java.DAO.DepartmentDAO;
-import com.java.deany.Deany;
 import com.java.deany.entity.Department;
-import com.java.deany.entity.Student;
 
+import org.apache.logging.log4j.EventLogger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class DepartmentDAOImpl implements DepartmentDAO {
 
-	static Logger log = LogManager.getLogger(DepartmentDAOImpl.class.getName());
+	static Logger log = LogManager.getLogger(DepartmentDAOImpl.class);
 	@Override
 	public void addDepartment(Department department) throws SQLException {
 		// TODO Auto-generated method stub
@@ -37,6 +36,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 				session.close();
 			}
 		}
+		
 	}
 
 	@Override

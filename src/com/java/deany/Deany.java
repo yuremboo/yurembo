@@ -1,7 +1,9 @@
 package com.java.deany;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Set;
 
 import com.java.deany.entity.Department;
 import com.java.deany.entity.Group;
@@ -67,11 +69,20 @@ public class Deany {
 		Factory.getProjectDAO().deleteProject(Factory.getProjectDAO().getProjectById(7));
 		
 		Collection projects = Factory.getProjectDAO().getAllProjects();
+		ArrayList<Project> stproj = new ArrayList<Project>();
 		iterator = projects.iterator();
+		boolean t = true;
 		while (iterator.hasNext()) {
 			project = (Project) iterator.next();
+			if (t) stproj.add(project);
+			t = false;
 			System.out.println(project);
 		}
+		
+		
+		
+		Student student = Factory.getStudentDAO().getStudentById(3);
+		//student.setProjects();
 		
 		
 		log.trace("Exiting application."); 

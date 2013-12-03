@@ -10,7 +10,7 @@ import org.hibernate.service.ServiceRegistryBuilder;
 import com.java.deany.Deany;
 
 public class HibernateUtil {
-	static Logger log = LogManager.getLogger(Deany.class.getName());
+	static Logger log = LogManager.getLogger(HibernateUtil.class);
 	
 	private static SessionFactory sessionFactory;
 	private static ServiceRegistry serviceRegistry;

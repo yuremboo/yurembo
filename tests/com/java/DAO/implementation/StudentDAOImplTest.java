@@ -45,7 +45,7 @@ public class StudentDAOImplTest extends Assert{
 	  expected.add(student);
 	  Factory.getStudentDAO().addStudent(student);
 	  StudentsList<Student> actual = Factory.getStudentDAO().getAllStudents();
-	  Factory.getStudentDAO().addStudent(new Student());
+	  //Factory.getStudentDAO().addStudent(new Student());
 	  assertEquals(actual, expected);
     //throw new RuntimeException("Test not implemented");
   }
