@@ -14,5 +14,6 @@ public interface ProjectDAO {
 	void deleteProject(Project project) throws SQLException;
 	Collection<Project> getProjectsByStudent(Student student) throws SQLException;
 	//Collection getGroupsByMark(int averageMark) throws SQLException;
+	int getCount() throws SQLException;
 
 }

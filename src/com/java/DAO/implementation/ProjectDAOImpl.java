@@ -11,8 +11,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 
 import com.java.DAO.ProjectDAO;
+import com.java.deany.entity.Department;
 import com.java.deany.entity.Project;
 import com.java.deany.entity.Student;
 
@@ -46,7 +48,9 @@ public class ProjectDAOImpl implements ProjectDAO {
 		try {
 			session = getSessionFactory().openSession();
 			session.beginTransaction();
-			session.update(project);
+			Project projectUpd = (Project)session.get(Project.class, projectId);
+			projectUpd.setProjectName(project.getProjectName());
+			session.update(projectUpd);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			log.error("Error insert " + e);
@@ -136,6 +140,28 @@ public class ProjectDAOImpl implements ProjectDAO {
 			}
 		}
 		return projects;
+	}
+	
+	@Override
+	public int getCount() throws SQLException {
+		// TODO Auto-generated method stub
+		Session session = null;
+		int count = 0;
+		try {
+			session = getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			Object result = session.createCriteria(Project.class)
+					.setProjection(Projections.rowCount()).uniqueResult();
+			count = Integer.parseInt(result.toString());
+			//session.getTransaction().commit();
+		} catch (Exception e) {
+			log.error(e);
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+		return count;
 	}
 
 }

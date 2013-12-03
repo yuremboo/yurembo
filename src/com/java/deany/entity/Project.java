@@ -42,5 +42,24 @@ public class Project {
 	public String toString() {
 		return "Project:" + getProjectId() +"-" + getProjectName();
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		if (this.projectName.equals(((Project) obj).projectName)) {
+			return true;
+		}
+		return false;
+	}    
+	
+	
+	@Override 
+	public int hashCode() {
+		return this.projectId;
+	}
 
 }

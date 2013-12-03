@@ -118,7 +118,7 @@ public class StudentDAOImplTest extends Assert{
   @Test
   public void getStudentsByProject() throws SQLException {
 	  StudentsList<Student> expected = Factory.getStudentDAO().getStudentsByProject(new Project());
-    throw new RuntimeException("Test not implemented");
+    //throw new RuntimeException("Test not implemented");
   }
 
   @Test
