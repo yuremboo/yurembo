@@ -1,12 +1,9 @@
 package com.java.deany.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-enum StudentsField { ID, FIRSTNAME, LASTNAME, MARK, GROUP, COURSE };
 /**
  * @author yurembo
  */
@@ -18,7 +15,7 @@ public class Student implements Serializable {
 	private float averageMark;
 	private int groupNumber;
 	private int id;
-	private Set projects = new HashSet();
+	private Set<Project> projects = new HashSet<Project>();
 	private static int ID = 1;
 	public static String regExp = "(([\\d]*)[\\s][A-Z]{1}[a-z-]*[\\s][A-Z]{1}[a-z-]*[\\s][1-5]\\.[\\d][\\s][1-5][\\d]{2})";
 	
@@ -77,11 +74,11 @@ public class Student implements Serializable {
 		return this.groupNumber;
 	}
 	
-	public Set getProjects() {
+	public Set<Project> getProjects() {
 		return this.projects;
 	}
 	
-	public void setProjects(Set projects) {
+	public void setProjects(Set<Project> projects) {
 		this.projects = projects;
 	}
 	/**

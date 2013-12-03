@@ -8,10 +8,12 @@ import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 
 import com.java.DAO.DepartmentDAO;
 import com.java.deany.Deany;
 import com.java.deany.entity.Department;
+import com.java.deany.entity.Student;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -45,7 +47,9 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 		try {
 			session = getSessionFactory().openSession();
 			session.beginTransaction();
-			session.update(department);
+			Department departmentUpd = (Department)session.get(Department.class, departmentId);
+			departmentUpd.setDepartmentName(department.getDepartmentName());
+			session.update(departmentUpd);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			log.error("Error insert " + e);
@@ -108,6 +112,28 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 	        session.close();
 	      }
 	    }
+	}
+	
+	@Override
+	public int getCount() throws SQLException {
+		// TODO Auto-generated method stub
+		Session session = null;
+		int count = 0;
+		try {
+			session = getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			Object result = session.createCriteria(Department.class)
+					.setProjection(Projections.rowCount()).uniqueResult();
+			count = Integer.parseInt(result.toString());
+			//session.getTransaction().commit();
+		} catch (Exception e) {
+			log.error(e);
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+		return count;
 	}
 	
 }

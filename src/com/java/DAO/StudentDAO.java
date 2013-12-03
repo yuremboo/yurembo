@@ -17,4 +17,5 @@ public interface StudentDAO {
 	StudentsList<Student> getStudentsByProject(Project project) throws SQLException;
 	StudentsList<Student> getStudentsByGroup(int groupNumber) throws SQLException;
 	StudentsList<Student> getStudentsByMark(float averageMark) throws SQLException;
+	int getCount() throws SQLException;
 }

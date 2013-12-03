@@ -42,4 +42,23 @@ public class Department {
 	public String toString() {
 		return " Department:" + getDepartmentId() + "-" + getDepartmentName();
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		if (this.getDepartmentName().equals(((Department) obj).getDepartmentName())) {
+			return true;
+		}
+		return false;
+	}    
+	
+	
+	@Override 
+	public int hashCode() {
+		return this.departmentId;
+	}
 }

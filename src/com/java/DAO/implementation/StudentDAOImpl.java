@@ -6,10 +6,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import com.java.DAO.StudentDAO;
-import com.java.deany.Deany;
 import com.java.deany.StudentsList;
 import com.java.deany.entity.Group;
 import com.java.deany.entity.Project;
@@ -43,14 +43,20 @@ public class StudentDAOImpl implements StudentDAO {
 	
 	
 	@Override
-	public void updateStudent(int studentId, Student student)
+	public void updateStudent(int id, Student student)
 			throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
 			session = getSessionFactory().openSession();
 			session.beginTransaction();
-			session.update(student);
+			Student student2 = (Student)session.get(Student.class, id);
+			student2.setFirstName(student.getFirstName());
+			student2.setAverageMark(student.getAverageMark());
+			student2.setGroupNumber(student.getGroupNumber());
+			student2.setLastName(student.getLastName());
+			
+			session.update(student2);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			log.error("Error insert " + e);
@@ -209,6 +215,30 @@ public class StudentDAOImpl implements StudentDAO {
 			}
 		}
 		return students;
+	}
+
+
+
+	@Override
+	public int getCount() throws SQLException {
+		// TODO Auto-generated method stub
+		Session session = null;
+		int count = 0;
+		try {
+			session = getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			Object result = session.createCriteria(Student.class)
+					.setProjection(Projections.rowCount()).uniqueResult();
+			count = Integer.parseInt(result.toString());
+			//session.getTransaction().commit();
+		} catch (Exception e) {
+			log.error(e);
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+		return count;
 	}
 
 }
