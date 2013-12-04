@@ -30,6 +30,7 @@ public class GroupDAOImpl implements GroupDAO {
 			session.beginTransaction();
 			session.save(group);
 			session.getTransaction().commit();
+			log.info("Added group: " + group);
 		} catch (Exception e) {
 			log.error("Error insert " + e);
 		} finally {
@@ -48,6 +49,7 @@ public class GroupDAOImpl implements GroupDAO {
 			session.beginTransaction();
 			session.update(group);
 			session.getTransaction().commit();
+			log.info("Updated group: " + group);
 		} catch (Exception e) {
 			log.error("Error insert " + e);
 		} finally {
@@ -65,6 +67,7 @@ public class GroupDAOImpl implements GroupDAO {
 		try {
 			session = getSessionFactory().openSession();
 			groups = session.createCriteria(Group.class).list();
+			log.info("Got all groups ");
 		} catch (Exception e) {
 			log.error(e);
 		} finally {
@@ -102,6 +105,7 @@ public class GroupDAOImpl implements GroupDAO {
 	    	session.beginTransaction();
 	    	session.delete(group);
 	    	session.getTransaction().commit();
+	    	log.info("Deleted group: " + group);
 	    } catch (Exception e) {
 	    	log.error(e);
 	    } finally {

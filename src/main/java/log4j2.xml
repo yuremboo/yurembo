@@ -24,15 +24,8 @@
     
   </Appenders>
   <Loggers>
-    
-    <Logger name="com.java.DAO.implementation">
-      <AppenderRef ref="file" level="error" additivity="false"/>
-      <AppenderRef ref="filedaodeb" level="info"/>
-    </Logger>
-    
 
-    
-    <Root level="trace">
+    <Root level="debug">
       <AppenderRef ref="filedebug"/>
     </Root>
     

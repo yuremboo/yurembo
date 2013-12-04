@@ -116,7 +116,7 @@ public class StudentDAOImpl implements StudentDAO {
 	    	session.beginTransaction();
 	    	session.delete(student);
 	    	session.getTransaction().commit();
-	    	log.info("Delete student: " + student);
+	    	log.info("Deleted student: " + student);
 	    } catch (Exception e) {
 	    	log.error(e);
 	    } finally {

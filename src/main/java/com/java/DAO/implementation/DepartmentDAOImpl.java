@@ -7,30 +7,29 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 
-import com.java.DAO.ProjectDAO;
+import com.java.DAO.DepartmentDAO;
 import com.java.deany.entity.Department;
-import com.java.deany.entity.Project;
-import com.java.deany.entity.Student;
 
-public class ProjectDAOImpl implements ProjectDAO {
-	
-	static Logger log = LogManager.getLogger(ProjectDAOImpl.class.getName());
+import org.apache.logging.log4j.EventLogger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+public class DepartmentDAOImpl implements DepartmentDAO {
+
+	static Logger log = LogManager.getLogger(DepartmentDAOImpl.class);
 	@Override
-	public void addProject(Project project) throws SQLException {
+	public void addDepartment(Department department) throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
 			session = getSessionFactory().openSession();
 			session.beginTransaction();
-			session.save(project);
+			session.save(department);
 			session.getTransaction().commit();
+			log.info("Added department: " + department);
 		} catch (Exception e) {
 			log.error("Error insert " + e);
 		} finally {
@@ -38,20 +37,22 @@ public class ProjectDAOImpl implements ProjectDAO {
 				session.close();
 			}
 		}
+		
 	}
 
 	@Override
-	public void updateProject(int projectId, Project project)
+	public void updateDepartment(int departmentId, Department department)
 			throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
 			session = getSessionFactory().openSession();
 			session.beginTransaction();
-			Project projectUpd = (Project)session.get(Project.class, projectId);
-			projectUpd.setProjectName(project.getProjectName());
-			session.update(projectUpd);
+			Department departmentUpd = (Department)session.get(Department.class, departmentId);
+			departmentUpd.setDepartmentName(department.getDepartmentName());
+			session.update(departmentUpd);
 			session.getTransaction().commit();
+			log.info("Updateded department: " + department);
 		} catch (Exception e) {
 			log.error("Error insert " + e);
 		} finally {
@@ -62,13 +63,14 @@ public class ProjectDAOImpl implements ProjectDAO {
 	}
 
 	@Override
-	public Collection<Project> getAllProjects() throws SQLException {
+	public Collection<Department> getAllDepartments() throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
-		List<Project> projects = new ArrayList<Project>();
+		List<Department> departments = new ArrayList<Department>();
 		try {
 			session = getSessionFactory().openSession();
-			projects = session.createCriteria(Project.class).list();
+			departments = session.createCriteria(Department.class).list();
+			log.info("Got all departments ");
 		} catch (Exception e) {
 			log.error(e);
 		} finally {
@@ -76,17 +78,17 @@ public class ProjectDAOImpl implements ProjectDAO {
 				session.close();
 			}
 		}
-		return projects;
+		return departments;
 	}
 
 	@Override
-	public Project getProjectById(int projectId) throws SQLException {
+	public Department getDepartmentById(int departmentId) throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
-		Project project = null;
+		Department department = null;
 		try {
 			session = getSessionFactory().openSession();
-			project = (Project) session.load(Project.class, projectId);
+			department = (Department) session.load(Department.class, departmentId);
 		} catch (Exception e) {
 			log.error(e);
 		} finally {
@@ -94,18 +96,19 @@ public class ProjectDAOImpl implements ProjectDAO {
 				session.close();
 			}
 		}
-		return project;
+		return department;
 	}
 
 	@Override
-	public void deleteProject(Project project) throws SQLException {
+	public void deleteDepartment(Department department) throws SQLException {
 		// TODO Auto-generated method stub
 		Session session = null;
 	    try {
 	    	session = getSessionFactory().openSession();
 	    	session.beginTransaction();
-	    	session.delete(project);
+	    	session.delete(department);
 	    	session.getTransaction().commit();
+	    	log.info("Deleted department: " + department);
 	    } catch (Exception e) {
 	    	log.error(e);
 	    } finally {
@@ -113,33 +116,6 @@ public class ProjectDAOImpl implements ProjectDAO {
 	        session.close();
 	      }
 	    }
-	}
-
-	@Override
-	public Collection<Project> getProjectsByStudent(Student student)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		Session session = null;
-		List<Project> projects = new ArrayList<Project>();
-		try {
-			session = getSessionFactory().getCurrentSession();
-			session.beginTransaction();
-			int id = student.getId();
-			Query query = session.createQuery(
-					" select P " 
-							+ " from Project P INNER JOIN P.students student" 
-							+ " where student.id = :id "
-							).setInteger("id", id);
-			projects = query.list();
-			session.getTransaction().commit();
-		} catch (Exception e) {
-			log.error(e);
-		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
-		}
-		return projects;
 	}
 	
 	@Override
@@ -150,7 +126,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 		try {
 			session = getSessionFactory().getCurrentSession();
 			session.beginTransaction();
-			Object result = session.createCriteria(Project.class)
+			Object result = session.createCriteria(Department.class)
 					.setProjection(Projections.rowCount()).uniqueResult();
 			count = Integer.parseInt(result.toString());
 			//session.getTransaction().commit();
@@ -163,5 +139,5 @@ public class ProjectDAOImpl implements ProjectDAO {
 		}
 		return count;
 	}
-
+	
 }
