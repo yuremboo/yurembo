@@ -26,7 +26,7 @@
   <Loggers>
     
     <Logger name="com.java.DAO.implementation">
-      <AppenderRef ref="file" level="error"/>
+      <AppenderRef ref="file" level="error" additivity="false"/>
       <AppenderRef ref="filedaodeb" level="info"/>
     </Logger>
     
