@@ -27,7 +27,7 @@ public class Deany {
         public final String textFile = "students.txt";
         public final String xmlFile = "students.xml";
 
-	public static void main(String[] args) {
+	public static void main(String[] Args) {
 		// TODO Auto-generated method stub
 		try {
 			new Deany();
@@ -38,6 +38,7 @@ public class Deany {
 	}
 
 	public Deany() throws SQLException {
+
 		
 		Logger log = LogManager.getLogger(Deany.class.getName());
 
