@@ -30,6 +30,7 @@ public class StudentDAOImpl implements StudentDAO {
 			session.beginTransaction();
 			session.save(student);
 			session.getTransaction().commit();
+			log.info("Added new student: " + student);
 		} catch (Exception e) {
 			log.error("Error insert " + e);
 		} finally {
@@ -58,6 +59,7 @@ public class StudentDAOImpl implements StudentDAO {
 			
 			session.update(student2);
 			session.getTransaction().commit();
+			log.info("Updated student: " + student);
 		} catch (Exception e) {
 			log.error("Error insert " + e);
 		} finally {
@@ -75,6 +77,7 @@ public class StudentDAOImpl implements StudentDAO {
 		try {
 			session = getSessionFactory().openSession();
 			students.addAll(session.createCriteria(Student.class).list());
+			log.info("Read all students.");
 		} catch (Exception e) {
 			log.error(e);
 		} finally {
@@ -113,6 +116,7 @@ public class StudentDAOImpl implements StudentDAO {
 	    	session.beginTransaction();
 	    	session.delete(student);
 	    	session.getTransaction().commit();
+	    	log.info("Delete student: " + student);
 	    } catch (Exception e) {
 	    	log.error(e);
 	    } finally {

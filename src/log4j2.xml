@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
   <Appenders>
-  	<Apper type="Console" name="STDOUT">
-  		<Layout type="PatternLayout" pattern="%d{ISO8601} [%5p] %m at %l%n"/>
-  		<Filters>
-  			<Filter type
-  		</Filters>
     <File name="file" fileName="logs/app.log">
       <PatternLayout pattern="%d{ISO8601} [%5p] %m at %l%n"/>
     </File>
@@ -17,10 +12,14 @@
     </Console>
   </Appenders>
   <Loggers>
-    <Root level="trace">
-      <AppenderRef ref="file" level="DEBUG"/>
-      <AppenderRef ref="STDOUT" level="INFO"/>
-      <AppenderRef ref="fileinfo" level="INFO"/>
+  	<Logger name="org.hibernate" level="trace" additivity="false">
+      <AppenderRef ref="fileinfo"/>
+    </Logger>
+    <Logger name="com.java.DAO.implementation" level="error" additivity="false">
+      <AppenderRef ref="file"/>
+    </Logger>
+    <Root level="error">
+      <AppenderRef ref="STDOUT"/>
     </Root>
   </Loggers>
 </Configuration>
