@@ -13,7 +13,6 @@ import org.hibernate.criterion.Projections;
 import com.java.DAO.DepartmentDAO;
 import com.java.deany.entity.Department;
 
-import org.apache.logging.log4j.EventLogger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

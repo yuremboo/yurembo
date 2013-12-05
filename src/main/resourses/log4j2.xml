@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+  
+    <File name="file" fileName="logs/dao_errors.log">
+      <PatternLayout pattern="%d{ISO8601} [%5p] %m at %l%n"/>
+    </File>
+    
+    <File name="filedaodeb" fileName="logs/dao_debug.log">
+      <PatternLayout pattern="%d{ISO8601} [%5p] %m at %l%n"/>
+    </File>
+    
+    <File name="filedebug" fileName="logs/debug.log">
+      <PatternLayout pattern="%d{ISO8601} [%5p] %m at %l%n"/>
+    </File>
+    
+    <File name="fileinfo" fileName="logs/info.log">
+      <PatternLayout pattern="%d{ISO8601} [%5p] %m at %l%n"/>
+    </File>
+    
+    <Console name="STDOUT" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{ISO8601} [%5p] %m at %l%n"/>
+    </Console>
+    
+  </Appenders>
+  <Loggers>
+
+    <Root level="debug">
+      <AppenderRef ref="filedebug"/>
+    </Root>
+    
+  </Loggers>
+</Configuration>

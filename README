@@ -12,3 +12,16 @@ git remote add origin https://github.com/***
 git push -u origin master
 
 git clone 
+
+
+---
+resourses for maven:
+
+http://www.mkyong.com/maven/how-to-convert-maven-java-project-to-support-eclipse-ide/
+http://stackoverflow.com/questions/13734832/unbound-classpath-variable-junit-and-log4j-when-importing-a-libgdx-project-in-to
+http://maven.apache.org/plugins/maven-eclipse-plugin/
+http://www.ibm.com/developerworks/ru/library/j-5things13/
+http://search.maven.org/
+http://mvnrepository.com/
+http://maven.apache.org/guides/getting-started/index.html#How_do_I_make_my_first_Maven_project
+http://habrahabr.ru/post/77382/
