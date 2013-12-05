@@ -11,7 +11,7 @@
 		<property column="lastName" name="lastName" type="java.lang.String"/>
 		<property column="firstName" name="firstName" type="java.lang.String"/>
 		<property column="averageMark" name="averageMark" type="java.lang.Float"/>
-
+		<property column="groupNumber" name="groupNumber" type="java.lang.Integer"/>
 		<set name="projects" table="studentsprojects" lazy="false">
 			<key column="id"/>
 			<many-to-many column="projectId" class="com.java.deany.entity.Project"/>

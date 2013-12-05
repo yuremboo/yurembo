@@ -54,7 +54,8 @@ public class Deany {
 		
 		
 		//Group g = new Group();
-		Collection groups = Factory.getInstance().getGroupDAO().getAllGroups();
+		Collection groups = Factory.getInstance().getDepartmentDAO().getDepartmentById(2).getGroups();
+		System.out.println("Groups by Dep2");
 		Iterator iterator = groups.iterator();
 		while (iterator.hasNext()) {
 			Group group = (Group) iterator.next();

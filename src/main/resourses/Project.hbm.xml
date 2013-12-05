@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.java.deany.entity.Project" table="projects">
+	<class name="com.java.deany.entity.Project" table="projects" lazy="false">
 		<id column="projectId" name="projectId" type="java.lang.Integer">
 			<generator class="increment"/>
 		</id>

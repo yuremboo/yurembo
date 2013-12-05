@@ -12,16 +12,22 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.java.DAO.implementation.DepartmentDAOImpl;
 import com.java.deany.StudentsList;
 import com.java.deany.entity.Student;
 
+
+
 public class WorkWithXML {
+	static Logger log = LogManager.getLogger(DepartmentDAOImpl.class);
 	/**
 	 * 
 	 * @param xmlFileName - Name of XML-file to save students list.
@@ -37,11 +43,11 @@ public class WorkWithXML {
 			doc = docBuilder.parse(new File(xmlFileName));
 		} 
 		catch(ParserConfigurationException pce) {
-			pce.printStackTrace();
+			log.error(pce);
 		}catch(SAXException se) {
-			se.printStackTrace();
+			log.error(se);
 		}catch(IOException ioe) {
-			ioe.printStackTrace();
+			log.error(ioe);
 		}
 		
 		//get the root element
@@ -110,7 +116,7 @@ public class WorkWithXML {
 		try {
 			return Integer.parseInt(getTextValue(ele,tagName));
 		}catch(NumberFormatException nfe){
-			nfe.printStackTrace();
+			log.error(nfe);
 			return 0;
 		}
 	}

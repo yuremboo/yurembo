@@ -18,6 +18,9 @@ import java.util.Scanner;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.java.deany.entity.Student;
 import com.java.utils.WorkWithRegex;
 import com.java.utils.WorkWithXML;
@@ -28,7 +31,7 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 5653602324956363704L;
-	
+	static Logger log = LogManager.getLogger(StudentsList.class);
 	/**
 	 * @param s - student
 	 * @return true - if student was transported to the next course, false - if not.
@@ -54,7 +57,7 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable {
 		try  {
 			in = new Scanner(new File(fileName));
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			log.debug(e);
 		}
 		while (in.hasNext()) {
         	String line = in.nextLine();
@@ -76,7 +79,7 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable {
 		try {
 			fileWriter = new FileWriter(filename);
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 		String newLine = System.getProperty("line.separator");
 		String students = "";
@@ -87,7 +90,7 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable {
 			fileWriter.write(students);
 			fileWriter.close();
 	    } catch (IOException e) {
-	    	e.printStackTrace();
+	    	log.error(e);
 	    }
 	}
         
@@ -188,7 +191,7 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable {
 			oos.close();
 		} catch (IOException e) {
 				// TODO: handle exception
-			e.printStackTrace();
+			log.error(e);
 		}
 	}
         
@@ -207,9 +210,9 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable {
 			ts = ((StudentsList<E>) oin.readObject());
 			oin.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 		int maxId = ((Student) ts.get(0)).getId();
 		
@@ -231,7 +234,7 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable {
 		try {
 			WorkWithXML.saveToXml((StudentsList<Student>) this, xmlFileName);	
 		} catch (ParserConfigurationException | TransformerException e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 		
 	}
