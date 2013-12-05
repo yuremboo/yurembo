@@ -111,6 +111,10 @@ public class ProjectDAOImpl implements ProjectDAO {
 	    	session.getTransaction().commit();
 	    	log.info("Deleted project: " + project);
 	    } catch (Exception e) {
+	    	log.debug(e);
+	    	log.trace(e);
+	    	log.warn(e);
+	    	log.fatal(e);
 	    	log.error(e);
 	    } finally {
 	      if (session != null && session.isOpen()) {

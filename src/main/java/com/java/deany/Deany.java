@@ -42,6 +42,11 @@ public class Deany {
 		
 		Logger log = LogManager.getLogger(Deany.class.getName());
 
+		Student student = Factory.getInstance().getStudentDAO().getStudentById(3);
+		student.setAverageMark(3);
+		student.setGroupNumber(700);
+		Factory.getInstance().getStudentDAO().updateStudent(3, student);
+		
 		students = Factory.getInstance().getStudentDAO().getAllStudents();
 		for (Student s:students) {
 			System.out.println(s); //print all students
@@ -82,7 +87,7 @@ public class Deany {
 		
 		
 		
-		Student student = Factory.getInstance().getStudentDAO().getStudentById(3);
+
 		//student.setProjects();
 		
 		

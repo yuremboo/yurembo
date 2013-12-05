@@ -2,20 +2,35 @@
 <Configuration status="WARN">
   <Appenders>
   
-    <File name="file" fileName="logs/dao_errors.log">
-      <PatternLayout pattern="%d{ISO8601} [%5p] %m at %l%n"/>
-    </File>
-    
-    <File name="filedaodeb" fileName="logs/dao_debug.log">
-      <PatternLayout pattern="%d{ISO8601} [%5p] %m at %l%n"/>
+    <File name="file" fileName="logs/errors.log" >
+      <PatternLayout pattern="%d{ISO8601} [%5p] %m at %l%n"/>  
+      <Filters>
+      	<ThresholdFilter level="FATAL" onMatch="DENY" onMismatch="NEUTRAL" />
+      	<ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY" />
+      </Filters>
+         
     </File>
     
     <File name="filedebug" fileName="logs/debug.log">
       <PatternLayout pattern="%d{ISO8601} [%5p] %m at %l%n"/>
+      <Filters>
+      	<ThresholdFilter level="FATAL" onMatch="DENY" onMismatch="NEUTRAL" />
+      	<ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL" />
+      	<ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL" />
+      	<ThresholdFilter level="INFO" onMatch="DENY" onMismatch="NEUTRAL" />
+      	<ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY" />
+      </Filters>
     </File>
     
     <File name="fileinfo" fileName="logs/info.log">
       <PatternLayout pattern="%d{ISO8601} [%5p] %m at %l%n"/>
+      <Filters>
+      	<ThresholdFilter level="FATAL" onMatch="DENY" onMismatch="NEUTRAL" />
+      	<ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL" />
+      	<ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL" />
+      	<ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY" />
+      </Filters>
+ 
     </File>
     
     <Console name="STDOUT" target="SYSTEM_OUT">
@@ -25,8 +40,10 @@
   </Appenders>
   <Loggers>
 
-    <Root level="debug">
+    <Root level="TRACE">
+      <AppenderRef ref="file"/>
       <AppenderRef ref="filedebug"/>
+	  <AppenderRef ref="fileinfo"/>
     </Root>
     
   </Loggers>

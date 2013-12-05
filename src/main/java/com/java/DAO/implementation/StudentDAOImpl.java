@@ -201,7 +201,7 @@ public class StudentDAOImpl implements StudentDAO {
 		Session session = null;
 		StudentsList<Student> students = new StudentsList<Student>();
 		try {
-			session = getSessionFactory().getCurrentSession();
+			session = getSessionFactory().openSession();
 			session.beginTransaction();
 			int projectId = project.getProjectId();
 			Query query = session.createQuery(
