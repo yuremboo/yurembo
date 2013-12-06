@@ -1,9 +1,9 @@
 package com.java.deany;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Set;
 
 import com.java.deany.entity.Department;
 import com.java.deany.entity.Group;
@@ -35,6 +35,7 @@ public class Deany {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 	public Deany() throws SQLException {
