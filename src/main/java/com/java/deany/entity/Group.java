@@ -3,8 +3,18 @@ package com.java.deany.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.java.deany.StudentsList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name="groups")
 public class Group {
 	private int groupNumber;
 	private int departmentId;
@@ -18,6 +28,7 @@ public class Group {
 		
 	}
 	
+
 	public void setGroupNumber(int groupNumber) {
 		this.groupNumber = groupNumber;
 	}
@@ -34,18 +45,24 @@ public class Group {
 		this.students = students;
 	}
 	
+	@Id
+	@Column(name="groupNumber")
 	public int getGroupNumber() {
 		return this.groupNumber;
 	}
 	
+	@Column(name="curator")
 	public String getCurator() {
 		return this.curator;
 	}
 	
-	public Set getStudents() {
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name="groupNumber")
+	public Set<Student> getStudents() {
 		return this.students;
 	}
 	
+	@Column(name="departmentId")
 	public int getDepartmentId() {
 		return this.departmentId;
 	}

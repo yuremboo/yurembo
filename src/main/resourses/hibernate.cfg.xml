@@ -23,7 +23,7 @@
     
     <mapping resource="Student.hbm.xml"/>
     <mapping resource="Department.hbm.xml"/>
-    <mapping resource="Group.hbm.xml"/>
+    <mapping class="com.java.deany.entity.Group"/>
     <mapping resource="Project.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

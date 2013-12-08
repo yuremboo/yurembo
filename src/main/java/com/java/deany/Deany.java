@@ -42,11 +42,6 @@ public class Deany {
 		
 		Logger log = LogManager.getLogger(Deany.class.getName());
 
-		Student student = Factory.getInstance().getStudentDAO().getStudentById(3);
-		student.setAverageMark(3);
-		student.setGroupNumber(700);
-		Factory.getInstance().getStudentDAO().updateStudent(3, student);
-		
 		students = Factory.getInstance().getStudentDAO().getAllStudents();
 		for (Student s:students) {
 			System.out.println(s); //print all students
@@ -57,9 +52,17 @@ public class Deany {
 		Collection groups = Factory.getInstance().getDepartmentDAO().getDepartmentById(2).getGroups();
 		System.out.println("Groups by Dep2");
 		Iterator iterator = groups.iterator();
+		Group gg = null;
 		while (iterator.hasNext()) {
 			Group group = (Group) iterator.next();
 			System.out.println(group);
+			if (group.getGroupNumber() == 541) gg = group;
+		}
+		
+		StudentsList<Student> sl = new StudentsList<>();
+		sl.addAll(gg.getStudents());
+		for (Student s:sl) {
+			System.out.println(s); //print all students
 		}
 		
 		Collection departments = Factory.getInstance().getDepartmentDAO().getAllDepartments();
