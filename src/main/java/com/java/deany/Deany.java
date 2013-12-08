@@ -90,62 +90,8 @@ public class Deany {
 			System.out.println(project);
 		}
 		
-		
-		
 
-		//student.setProjects();
-		
-		
 		log.trace("Exiting application."); 
-		
-		
-		//DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-		//con = DriverManager.getConnection(URL, username, password);
-        
-       // if(con!=null) System.out.println("OK! \n");
-       // if(con==null) System.exit(0);
 
-		//students.deserializeStudentsList(serializedFile);  //Serialization 
-		//students.loadFromFile(textFile); 
-		//students.loadFromXml(xmlFile);
-		//students.add(new Student("Test","Test",2.5,141)); //add new student
-		
-		
-		/* 
-		Student newStudent = new Student();
-		newStudent.setFirstName("Petro");
-		newStudent.setLastName("Petrov");
-		newStudent.setAverageMark(4);
-		newStudent.setGroupNumber(141);
-		Factory.getStudentDAO().addStudent(newStudent);
-		students = Factory.getStudentDAO().getAllStudents();
-		for (Student s:students) {
-			System.out.println(s); //print all students
-		}
-		*/
-		
-		//students.orderBy(StudentsField.LASTNAME);  //sorting students list
-		//for (Student s:students) {
-		//	System.out.println(s); //print all students
-		//}
-		
-		/*
-		 * overloaded method StudentsList<E> getStudentsBy(StudentsField field, Character operator, Double i)
-		 * 					 StudentsList<E> getStudentsBy(StudentsField field, Character operator, int i)
-		 */
-		
-		//StudentsList<Student> studentsBy = new StudentsList<>();
-		//studentsBy.addAll(students.getStudentsBy(StudentsField.MARK,'>',4.0));
-		
-		//for (Student s:studentsBy) {
-		//	System.out.println(s); //print all studentsBy
-		//}
-		
-		//students.saveToFile(textFile);  //Save to file
-		//students.serializeStudentsList(serializedFile);  //Serialization
-		//students.saveToXml(xmlFile);
-                
-		
-       // if (con!=null)con.close();
 	}
 }
