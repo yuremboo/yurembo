@@ -39,6 +39,11 @@
     
   </Appenders>
   <Loggers>
+  
+  <!--org.hibernate.SQL logger-->
+    <logger name="org.hibernate">
+        <level value="info"/>
+    </logger>
 
     <Root level="TRACE">
       <AppenderRef ref="file"/>
