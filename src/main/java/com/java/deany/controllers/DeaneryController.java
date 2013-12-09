@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class DeaneryController {
 	
+	private int visitorCount = 0;
+	
 	@RequestMapping("/index.html")
 	public String index(Model model) {
-		return "WEB-INF/index.jsp";
+		model.addAttribute("visitorCount", visitorCount++);
+		return "WEB-INF/jsp/index.jsp";
 	}
 
 }
