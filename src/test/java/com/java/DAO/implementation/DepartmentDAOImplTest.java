@@ -2,7 +2,6 @@ package com.java.DAO.implementation;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,7 +11,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
 
 import com.java.deany.Factory;
-import com.java.deany.StudentsList;
 import com.java.deany.entity.Department;
 import com.java.deany.entity.Student;
 
@@ -79,7 +77,7 @@ public class DepartmentDAOImplTest extends Assert{
 	  Department actual = new Department();
 	  actual.setDepartmentId(1);
 	  actual.setDepartmentName("CSN");
-	  Department excepted = Factory.getDepartmentDAO().getDepartmentById(0);
+	  Factory.getDepartmentDAO().getDepartmentById(0);
 	  assertEquals(actual, expected);
     //throw new RuntimeException("Test not implemented");
   }
@@ -87,15 +85,14 @@ public class DepartmentDAOImplTest extends Assert{
   @Test
   public void updateDepartment() throws SQLException {
 	  Department expected = new Department();
-	  expected.setDepartmentId(4);
+	  expected.setDepartmentId(5);
 	  expected.setDepartmentName("NET");
 	  Factory.getDepartmentDAO().addDepartment(expected);
 	  expected.setDepartmentName("J");
-	  Factory.getDepartmentDAO().updateDepartment(4, expected);
-	  Department actual = Factory.getDepartmentDAO().getDepartmentById(4);
+	  Factory.getDepartmentDAO().updateDepartment(5, expected);
+	  Department actual = Factory.getDepartmentDAO().getDepartmentById(5);
 	  assertEquals(actual, expected);
-	  Factory.getStudentDAO().updateStudent(0, new Student());
-	  Factory.getDepartmentDAO().deleteDepartment(expected);
+	  Factory.getDepartmentDAO().deleteDepartment(actual);
     //throw new RuntimeException("Test not implemented");
   }
 }

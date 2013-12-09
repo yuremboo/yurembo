@@ -90,6 +90,8 @@ public class Deany {
 			System.out.println(project);
 		}
 		
+		System.out.println(Factory.getInstance().getGroupDAO().getGroupByNumber(521));
+		
 
 		log.trace("Exiting application."); 
 

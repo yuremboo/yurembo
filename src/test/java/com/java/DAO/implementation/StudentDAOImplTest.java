@@ -73,7 +73,7 @@ public class StudentDAOImplTest extends Assert{
   @Test
   public void getStudentById() throws SQLException {
 	  Student expected = Factory.getStudentDAO().getStudentById(5);
-	  Student actual = new Student("Ramsey", "Aaron", 4.0f, 441);
+	  Student actual = new Student("Ramsey", "Aaron", 4.0f, 421);
 	  Student excepted = Factory.getStudentDAO().getStudentById(0);
 	  assertEquals(actual, expected);
 //    throw new RuntimeException("Test not implemented");
@@ -126,7 +126,7 @@ public class StudentDAOImplTest extends Assert{
 	  Student expected = new Student();
 	  expected.setAverageMark(4.0f);
 	  expected.setFirstName("Aaron");
-	  expected.setGroupNumber(441);
+	  expected.setGroupNumber(421);
 	  expected.setLastName("Ramsey");
 	  Factory.getStudentDAO().updateStudent(5, expected);
 	  Student actual = Factory.getStudentDAO().getStudentById(5);

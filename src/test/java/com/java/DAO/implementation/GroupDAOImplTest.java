@@ -69,7 +69,7 @@ public class GroupDAOImplTest extends Assert {
 	  Group actual = new Group();
 	  actual.setGroupNumber(111);
 	  actual.setDepartmentId(3);
-	  actual.setCurator("first");
+	  actual.setCurator("First");
 	  Group excepted = Factory.getGroupDAO().getGroupByNumber(0);
 	  assertEquals(actual, expected);
     //throw new RuntimeException("Test not implemented");
