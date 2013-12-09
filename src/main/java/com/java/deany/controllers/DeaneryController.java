@@ -15,7 +15,7 @@ public class DeaneryController {
 	
 	@RequestMapping("/index.html")
 	public String index(Model model) {
-		return "WEB-INF/jsp/index.jsp";
+		return "WEB-INF/index.jsp";
 	}
 
 }
