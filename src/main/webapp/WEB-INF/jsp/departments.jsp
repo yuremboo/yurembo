@@ -6,32 +6,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Students</title>
+<title>Departments</title>
 </head>
 <body>
-<h3>Students</h3>
+<h3>Departments</h3>
 <c:set var="highlight" value="Students" scope="request"/>
 <jsp:include page="header.jsp"/>
 <br>
-<a href="<c:url value="/addStudent.html"/>">Add new student</a>
+<a href="<c:url value="/addDepartment"/>">Add new department</a>
 <table>
 	<thead>
 		<tr>
 			<td>ID</td>
-			<td>First name</td>
-			<td>Second Name</td>
-			<td>Average mark</td>
-			<td>Group number</td>
+			<td>Department</td>
 		</tr>
 	</thead>
-	<c:forEach items="${students}" var="student">
+	<c:forEach items="${departments}" var="department">
 		<tr>
-			<td>${student.id}</td>
-			<td><c:out value="${student.firstName}" escapeXml="true"/></td>
-			<td><c:out value="${student.lastName}" escapeXml="true"/></td>
-			<td>${student.averageMark}</td>
-			<td>${student.groupNumber}</td>
-			<td><a href="<c:url value="/editStudent.html?id=${student.id}"/>">Edit</a></td>
+			<td>${department.departmentId}</td>
+			<td><c:out value="${department.departmentName}" escapeXml="true"/></td>
+			<td><a href="<c:url value="/editDepartment?id=${department.departmentId}"/>">Edit</a></td>
 		</tr>
 	</c:forEach>
 </table>

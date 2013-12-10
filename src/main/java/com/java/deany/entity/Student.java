@@ -16,11 +16,22 @@ public class Student implements Serializable {
 	private int groupNumber;
 	private int id;
 	private Set<Project> projects = new HashSet<Project>();
-	private static int ID = 1;
+	//private static int ID = 1;
 	public static String regExp = "(([\\d]*)[\\s][A-Z]{1}[a-z-]*[\\s][A-Z]{1}[a-z-]*[\\s][1-5]\\.[\\d][\\s][1-5][\\d]{2})";
 	
 	public Student() {
 		
+	}
+	
+	public Student(int id, String lastName, 
+			String firstName, 
+			float averageMark, 
+			int groupNumber) {
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.averageMark = averageMark;
+		this.groupNumber = groupNumber;
+		this.id = id;
 	}
 	/**
 	 * 
@@ -37,8 +48,10 @@ public class Student implements Serializable {
 		this.firstName = firstName;
 		this.averageMark = averageMark;
 		this.groupNumber = groupNumber;
-		this.id = ID++;
+		//this.id = ID++;
 	}
+	
+	
 	/**
 	 * 
 	 * @return Student's first name. Type: String.
@@ -107,8 +120,8 @@ public class Student implements Serializable {
 	 * 
 	 * @param id - Student's ID. Type: int.
 	 */
-	public static void setID(int id) {
-		Student.ID = id;
+	public static void setIDDD(int id) {
+		//Student.ID = id;
 	}
 	/**
 	 * 

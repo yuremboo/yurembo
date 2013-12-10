@@ -22,7 +22,7 @@ public class GroupDAOImpl implements GroupDAO {
 	static Logger log = LogManager.getLogger(GroupDAOImpl.class.getName());
 
 	@Override
-	public void addGroup(Group group) throws SQLException {
+	public void addGroup(Group group) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
@@ -41,7 +41,7 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public void updateGroup(int groupId, Group group) throws SQLException {
+	public void updateGroup(int groupId, Group group) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
@@ -60,7 +60,7 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public Collection<Group> getAllGroups() throws SQLException {
+	public Collection<Group> getAllGroups() {
 		// TODO Auto-generated method stub
 		Session session = null;
 		List<Group> groups = new ArrayList<Group>();
@@ -79,7 +79,7 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public Group getGroupByNumber(int groupNumber) throws SQLException {
+	public Group getGroupByNumber(int groupNumber) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		Group group = null;
@@ -97,7 +97,7 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public void deleteGroup(Group group) throws SQLException {
+	public void deleteGroup(Group group) {
 		// TODO Auto-generated method stub
 		Session session = null;
 	    try {
@@ -116,8 +116,7 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public Collection<Group> getGroupsByDepartment(Department department)
-			throws SQLException {
+	public Collection<Group> getGroupsByDepartment(Department department) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		List<Group> groups = new ArrayList<Group>();

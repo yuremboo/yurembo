@@ -29,20 +29,19 @@ public class Deany {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		try {
+
 			new Deany();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 
 	}
 
-	public Deany() throws SQLException {
+	public Deany() {
 
 		
 		Logger log = LogManager.getLogger(Deany.class.getName());
 
+		Factory.getInstance().getStudentDAO().updateStudent(12, new Student("asda", "asdasd", 5.2f, 521));
+		
 		students = Factory.getInstance().getStudentDAO().getAllStudents();
 		for (Student s:students) {
 			System.out.println(s); //print all students

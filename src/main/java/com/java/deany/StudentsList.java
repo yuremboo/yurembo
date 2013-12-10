@@ -221,7 +221,7 @@ public class StudentsList<E> extends ArrayList<E> implements Serializable {
 			currentId = ((Student) s).getId();
 			maxId = currentId > maxId ? currentId : maxId;
 		}
-		Student.setID(++maxId);
+		Student.setIDDD(++maxId);
 		this.addAll(ts);
 	}
         

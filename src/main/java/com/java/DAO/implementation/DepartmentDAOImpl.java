@@ -20,7 +20,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
 	static Logger log = LogManager.getLogger(DepartmentDAOImpl.class);
 	@Override
-	public void addDepartment(Department department) throws SQLException {
+	public void addDepartment(Department department) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
@@ -40,8 +40,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 	}
 
 	@Override
-	public void updateDepartment(int departmentId, Department department)
-			throws SQLException {
+	public void updateDepartment(int departmentId, Department department) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
@@ -62,7 +61,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 	}
 
 	@Override
-	public Collection<Department> getAllDepartments() throws SQLException {
+	public Collection<Department> getAllDepartments() {
 		// TODO Auto-generated method stub
 		Session session = null;
 		List<Department> departments = new ArrayList<Department>();
@@ -81,7 +80,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 	}
 
 	@Override
-	public Department getDepartmentById(int departmentId) throws SQLException {
+	public Department getDepartmentById(int departmentId) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		Department department = null;
@@ -99,7 +98,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 	}
 
 	@Override
-	public void deleteDepartment(Department department) throws SQLException {
+	public void deleteDepartment(Department department) {
 		// TODO Auto-generated method stub
 		Session session = null;
 	    try {
@@ -118,7 +117,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 	}
 	
 	@Override
-	public int getCount() throws SQLException {
+	public int getCount() {
 		// TODO Auto-generated method stub
 		Session session = null;
 		int count = 0;

@@ -22,7 +22,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	static Logger log = LogManager.getLogger(ProjectDAOImpl.class.getName());
 
 	@Override
-	public void addProject(Project project) throws SQLException {
+	public void addProject(Project project) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
@@ -41,8 +41,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	}
 
 	@Override
-	public void updateProject(int projectId, Project project)
-			throws SQLException {
+	public void updateProject(int projectId, Project project) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
@@ -63,7 +62,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	}
 
 	@Override
-	public Collection<Project> getAllProjects() throws SQLException {
+	public Collection<Project> getAllProjects() {
 		// TODO Auto-generated method stub
 		Session session = null;
 		List<Project> projects = new ArrayList<Project>();
@@ -82,7 +81,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	}
 
 	@Override
-	public Project getProjectById(int projectId) throws SQLException {
+	public Project getProjectById(int projectId) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		Project project = null;
@@ -100,7 +99,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	}
 
 	@Override
-	public void deleteProject(Project project) throws SQLException {
+	public void deleteProject(Project project) {
 		// TODO Auto-generated method stub
 		Session session = null;
 	    try {
@@ -119,8 +118,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	}
 
 	@Override
-	public Collection<Project> getProjectsByStudent(Student student)
-			throws SQLException {
+	public Collection<Project> getProjectsByStudent(Student student) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		List<Project> projects = new ArrayList<Project>();
@@ -146,7 +144,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	}
 	
 	@Override
-	public int getCount() throws SQLException {
+	public int getCount() {
 		// TODO Auto-generated method stub
 		Session session = null;
 		int count = 0;

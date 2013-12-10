@@ -1,7 +1,5 @@
 package com.java.DAO.implementation;
 
-import java.sql.SQLException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Query;
@@ -22,7 +20,7 @@ public class StudentDAOImpl implements StudentDAO {
 	static Logger log = LogManager.getLogger(StudentDAOImpl.class.getName());
 
 	@Override
-	public void addStudent(Student student) throws SQLException {
+	public void addStudent(Student student) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
@@ -44,8 +42,7 @@ public class StudentDAOImpl implements StudentDAO {
 	
 	
 	@Override
-	public void updateStudent(int id, Student student)
-			throws SQLException {
+	public void updateStudent(int id, Student student) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
@@ -70,7 +67,7 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Override
-	public StudentsList<Student> getAllStudents() throws SQLException {
+	public StudentsList<Student> getAllStudents() {
 		// TODO Auto-generated method stub
 		Session session = null;
 		StudentsList<Student> students = new StudentsList<Student>();
@@ -90,7 +87,7 @@ public class StudentDAOImpl implements StudentDAO {
 	
 
 	@Override
-	public Student getStudentById(int studentId) throws SQLException {
+	public Student getStudentById(int studentId) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		Student student = null;
@@ -108,7 +105,7 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Override
-	public void deleteStudent(Student student) throws SQLException {
+	public void deleteStudent(Student student) {
 		// TODO Auto-generated method stub
 		Session session = null;
 	    try {
@@ -128,8 +125,7 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Override
-	public StudentsList<Student> getStudentsByGroup(Group group)
-			throws SQLException {
+	public StudentsList<Student> getStudentsByGroup(Group group) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		StudentsList<Student> students = new StudentsList<Student>();
@@ -151,8 +147,7 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Override
-	public StudentsList<Student> getStudentsByMark(float averageMark)
-			throws SQLException {
+	public StudentsList<Student> getStudentsByMark(float averageMark) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		StudentsList<Student> students = new StudentsList<Student>();
@@ -173,8 +168,7 @@ public class StudentDAOImpl implements StudentDAO {
 
 
 	@Override
-	public StudentsList<Student> getStudentsByGroup(int groupNumber)
-			throws SQLException {
+	public StudentsList<Student> getStudentsByGroup(int groupNumber) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		StudentsList<Student> students = new StudentsList<Student>();
@@ -195,8 +189,7 @@ public class StudentDAOImpl implements StudentDAO {
 
 
 	@Override
-	public StudentsList<Student> getStudentsByProject(Project project)
-			throws SQLException {
+	public StudentsList<Student> getStudentsByProject(Project project) {
 		// TODO Auto-generated method stub
 		Session session = null;
 		StudentsList<Student> students = new StudentsList<Student>();
@@ -224,7 +217,7 @@ public class StudentDAOImpl implements StudentDAO {
 
 
 	@Override
-	public int getCount() throws SQLException {
+	public int getCount() {
 		// TODO Auto-generated method stub
 		Session session = null;
 		int count = 0;

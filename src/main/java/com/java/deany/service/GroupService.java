@@ -1,11 +1,11 @@
-package com.java.DAO;
+package com.java.deany.service;
 
 import java.util.Collection;
 
 import com.java.deany.entity.Department;
 import com.java.deany.entity.Group;
 
-public interface GroupDAO {
+public interface GroupService {
 	void addGroup(Group group);
 	void updateGroup(int groupNumber, Group group);
 	Collection<Group> getAllGroups();
