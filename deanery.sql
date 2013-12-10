@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Дек 05 2013 г., 20:31
+-- Время создания: Дек 10 2013 г., 21:20
 -- Версия сервера: 5.6.11
 -- Версия PHP: 5.5.3
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `departments` (
   `departmentId` int(11) NOT NULL AUTO_INCREMENT,
   `departmentName` varchar(100) NOT NULL,
   PRIMARY KEY (`departmentId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Дамп данных таблицы `departments`
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `projectId` int(11) NOT NULL AUTO_INCREMENT,
   `projectName` varchar(255) NOT NULL,
   PRIMARY KEY (`projectId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Дамп данных таблицы `projects`
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `students` (
   `groupNumber` int(6) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `groupNumber` (`groupNumber`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Дамп данных таблицы `students`
@@ -120,14 +120,14 @@ CREATE TABLE IF NOT EXISTS `students` (
 
 INSERT INTO `students` (`id`, `lastName`, `firstName`, `averageMark`, `groupNumber`) VALUES
 (3, 'Student', 'First', 3, 111),
-(4, 'Rooney', 'Wayne', 5, 521),
 (5, 'Ramsey', 'Aaron', 4, 421),
 (6, 'Cole', 'Jow', 4, 121),
 (7, 'Messi', 'Lionel', 5, 541),
 (8, 'Ronaldo', 'Cristiano', 4.5, 521),
 (9, 'Iniesta', 'Andres', 4.5, 541),
 (10, 'Ribery', 'Frank', 4, 421),
-(11, 'Hart', 'Joe', 3.5, 321);
+(11, 'Hart', 'Joe', 3.5, 321),
+(12, 'asda', 'asdasd', 5.2, 521);
 
 -- --------------------------------------------------------
 
@@ -150,7 +150,6 @@ CREATE TABLE IF NOT EXISTS `studentsprojects` (
 INSERT INTO `studentsprojects` (`id`, `projectId`) VALUES
 (3, 1),
 (3, 2),
-(4, 2),
 (5, 3);
 
 --
@@ -173,8 +172,8 @@ ALTER TABLE `students`
 -- Ограничения внешнего ключа таблицы `studentsprojects`
 --
 ALTER TABLE `studentsprojects`
-  ADD CONSTRAINT `studentsprojects_ibfk_2` FOREIGN KEY (`projectId`) REFERENCES `projects` (`projectId`),
-  ADD CONSTRAINT `studentsprojects_ibfk_1` FOREIGN KEY (`id`) REFERENCES `students` (`id`);
+  ADD CONSTRAINT `studentsprojects_ibfk_1` FOREIGN KEY (`id`) REFERENCES `students` (`id`),
+  ADD CONSTRAINT `studentsprojects_ibfk_2` FOREIGN KEY (`projectId`) REFERENCES `projects` (`projectId`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
