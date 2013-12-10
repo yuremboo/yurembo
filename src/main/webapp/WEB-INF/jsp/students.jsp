@@ -32,6 +32,7 @@
 			<td>${student.averageMark}</td>
 			<td>${student.groupNumber}</td>
 			<td><a href="<c:url value="/editStudent.html?id=${student.id}"/>">Edit</a></td>
+			<td><a href="<c:url value="/deleteStudent.html?id=${student.id}"/>">Delete</a></td>
 		</tr>
 	</c:forEach>
 </table>

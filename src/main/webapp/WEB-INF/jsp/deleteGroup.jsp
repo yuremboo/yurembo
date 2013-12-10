@@ -7,34 +7,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>
-		<c:if test="${empty group.groupNumber}">Add new Group</c:if>
-		<c:if test="${not empty group.groupNumber}">Edit Group</c:if>
+		<c:if test="${not empty group.groupNumber}">Delete Group</c:if>
 	</title>
 </head>
 <body>
-	<form:label path="group.groupNumber"/>
 	<form:form method="POST" commandName="group">
 		<table>
-			
 			<tr>
 				<td>Group Number</td>
-				<td>
-				<c:if test="${empty group.groupNumber}"><form:input path="groupNumber" id="groupNumber"/></c:if>
-				<c:if test="${not empty group.groupNumber}"><form:label path="groupNumber"/></c:if>
-				</td>
+				<td><form:label path="groupNumber" >${group.groupNumber}</form:label></td>
 			</tr>
 			<tr>
 				<td>Department</td>
 				<td>
-					<form:select path="departmentId" id="departmentId" items="${department}" itemValue="departmentId" itemLabel="departmentName" />
+					<form:label path="departmentId"  >${group.departmentId}</form:label>
 				</td>
 			</tr>
 			<tr>
 				<td>Curator</td>
-				<td><form:input path="curator"/></td>
+				<td><form:label path="curator" >${group.curator}</form:label></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Save"/></td>
+				<td colspan="2"><input type="submit" value="Delete"/></td>
 			</tr>
 		</table>
 	</form:form>

@@ -10,7 +10,7 @@
 </head>
 <body>
 <h3>Groups</h3>
-<c:set var="highlight" value="Students" scope="request"/>
+<c:set var="highlight" value="Groups" scope="request"/>
 <jsp:include page="header.jsp"/>
 <br>
 <a href="<c:url value="/addGroup.html"/>">Add new group</a>
@@ -28,6 +28,7 @@
 			<td>${group.departmentId}</td>
 			<td><c:out value="${group.curator}" escapeXml="true"/></td>
 			<td><a href="<c:url value="/editGroup.html?groupNumber=${group.groupNumber}"/>">Edit</a></td>
+			<td><a href="<c:url value="/deleteGroup.html?groupNumber=${group.groupNumber}"/>">Delete</a></td>
 		</tr>
 	</c:forEach>
 </table>

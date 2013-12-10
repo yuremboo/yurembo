@@ -10,7 +10,7 @@
 </head>
 <body>
 <h3>Departments</h3>
-<c:set var="highlight" value="Students" scope="request"/>
+<c:set var="highlight" value="Departments" scope="request"/>
 <jsp:include page="header.jsp"/>
 <br>
 <a href="<c:url value="/addDepartment"/>">Add new department</a>

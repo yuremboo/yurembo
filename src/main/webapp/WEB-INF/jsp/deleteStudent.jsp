@@ -7,8 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>
-		<c:if test="${empty student.id}">Add new Student</c:if>
-		<c:if test="${not empty student.id}">Edit Student</c:if>
+		<c:if test="${not empty student.id}">Delete Student</c:if>
 	</title>
 </head>
 <body>
@@ -17,24 +16,22 @@
 		<table>
 			<tr>
 				<td>First Name</td>
-				<td><form:input path="firstName"/></td>
+				<td><form:label path="firstName">${student.firstName}</form:label></td>
 			</tr>
 			<tr>
 				<td>Second Name</td>
-				<td><form:input path="lastName"/></td>
+				<td><form:label path="lastName">${student.lastName}</form:label></td>
 			</tr>
 			<tr>
 				<td>Average Mark</td>
-				<td><form:input path="averageMark"/></td>
+				<td><form:label path="averageMark">${student.averageMark}</form:label></td>
 			</tr>
 			<tr>
 				<td>Group Number</td>
-				<td>
-					<form:select path="groupNumber" id="groupNumber" items="${group}" itemValue="groupNumber" itemLabel="groupNumber" />
-				</td>
+				<td><form:label path="groupNumber">${student.groupNumber}</form:label></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Save"/></td>
+				<td colspan="2"><input type="submit" value="Delete"/></td>
 			</tr>
 		</table>
 	</form:form>

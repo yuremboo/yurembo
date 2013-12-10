@@ -2,7 +2,7 @@ package com.java.DAO.implementation;
 
 import static com.java.utils.HibernateUtil.getSessionFactory;
 
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

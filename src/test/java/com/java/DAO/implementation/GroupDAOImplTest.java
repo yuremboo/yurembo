@@ -30,15 +30,19 @@ public class GroupDAOImplTest extends Assert {
 
   @BeforeTest
   public void beforeTest() {
+	  
   }
 
   @AfterTest
   public void afterTest() {
+	  
   }
 
 
   @Test
   public void addGroup() throws SQLException {
+	  
+	  
 	  ArrayList<Group> expected = new ArrayList<Group>();
 	  expected.addAll(Factory.getGroupDAO().getAllGroups());
 	  expected.add(group);
@@ -47,11 +51,14 @@ public class GroupDAOImplTest extends Assert {
 	  ArrayList<Group> actual = new ArrayList<Group>();
 	  actual.addAll(Factory.getGroupDAO().getAllGroups());
 	  assertEquals(actual, expected);
+
+	  Factory.getGroupDAO().deleteGroup(group);
     //throw new RuntimeException("Test not implemented");
   }
 
   @Test
   public void deleteGroup() throws SQLException {
+	  Factory.getGroupDAO().addGroup(group);
 	  ArrayList<Group> expected = new ArrayList<Group>();
 	  expected.addAll(Factory.getGroupDAO().getAllGroups());
 	  expected.remove(expected.lastIndexOf(group));
@@ -60,18 +67,18 @@ public class GroupDAOImplTest extends Assert {
 	  actual.addAll(Factory.getGroupDAO().getAllGroups());
 	  Factory.getGroupDAO().deleteGroup(null);
 	  assertEquals(actual, expected);	
+	  Factory.getGroupDAO().deleteGroup(group);
     //throw new RuntimeException("Test not implemented");
   }
 
   @Test
   public void getGroupByNumber() throws SQLException {
-	  Group expected = Factory.getGroupDAO().getGroupByNumber(111);
-	  Group actual = new Group();
-	  actual.setGroupNumber(111);
-	  actual.setDepartmentId(3);
-	  actual.setCurator("First");
-	  Group excepted = Factory.getGroupDAO().getGroupByNumber(0);
+	  Factory.getGroupDAO().addGroup(group);
+	  Group expected = Factory.getGroupDAO().getGroupByNumber(599);
+	  Group actual = group;
+	  Factory.getGroupDAO().getGroupByNumber(0);
 	  assertEquals(actual, expected);
+	  Factory.getGroupDAO().deleteGroup(group);
     //throw new RuntimeException("Test not implemented");
   }
 
@@ -82,17 +89,15 @@ public class GroupDAOImplTest extends Assert {
 
   @Test
   public void updateGroup() throws SQLException {
-	  Group expected = new Group();
-	  expected.setGroupNumber(588);
-	  expected.setCurator("Test");
-	  expected.setDepartmentId(1);
-	  Factory.getGroupDAO().addGroup(expected);
+	  Factory.getGroupDAO().addGroup(group);
+	  Group expected = group;
 	  expected.setCurator("Newcurator");
-	  Factory.getGroupDAO().updateGroup(588, expected);
-	  Group actual = Factory.getGroupDAO().getGroupByNumber(588);
+	  Factory.getGroupDAO().updateGroup(599, expected);
+	  Group actual = Factory.getGroupDAO().getGroupByNumber(599);
 	  assertEquals(actual, expected);
 	  Factory.getGroupDAO().updateGroup(999, new Group());
 	  Factory.getGroupDAO().deleteGroup(expected);
+	  Factory.getGroupDAO().deleteGroup(group);
     //throw new RuntimeException("Test not implemented");
   }
 }

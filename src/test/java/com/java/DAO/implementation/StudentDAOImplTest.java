@@ -74,7 +74,7 @@ public class StudentDAOImplTest extends Assert{
   public void getStudentById() throws SQLException {
 	  Student expected = Factory.getStudentDAO().getStudentById(5);
 	  Student actual = new Student("Ramsey", "Aaron", 4.0f, 421);
-	  Student excepted = Factory.getStudentDAO().getStudentById(0);
+	  Factory.getStudentDAO().getStudentById(0);
 	  assertEquals(actual, expected);
 //    throw new RuntimeException("Test not implemented");
   }
@@ -117,7 +117,7 @@ public class StudentDAOImplTest extends Assert{
 
   @Test
   public void getStudentsByProject() throws SQLException {
-	  StudentsList<Student> expected = Factory.getStudentDAO().getStudentsByProject(new Project());
+	  Factory.getStudentDAO().getStudentsByProject(new Project());
     //throw new RuntimeException("Test not implemented");
   }
 

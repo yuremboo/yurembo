@@ -12,7 +12,6 @@ import org.testng.annotations.AfterTest;
 
 import com.java.deany.Factory;
 import com.java.deany.entity.Department;
-import com.java.deany.entity.Student;
 
 public class DepartmentDAOImplTest extends Assert{
 	Department department = new Department();

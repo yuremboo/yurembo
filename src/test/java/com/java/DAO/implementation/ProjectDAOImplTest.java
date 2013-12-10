@@ -45,11 +45,13 @@ public class ProjectDAOImplTest extends Assert{
 	  actual.addAll(Factory.getProjectDAO().getAllProjects());
 	  Factory.getProjectDAO().getAllProjects();
 	  assertEquals(actual, expected);
+	  Factory.getProjectDAO().deleteProject(project);
     //throw new RuntimeException("Test not implemented");
   }
 
   @Test
   public void deleteProject() throws SQLException {
+	  Factory.getProjectDAO().addProject(project);
 	  ArrayList<Project> expected = new ArrayList<Project>();
 	  expected.addAll(Factory.getProjectDAO().getAllProjects());
 	  expected.remove(expected.lastIndexOf(project));
@@ -76,7 +78,7 @@ public class ProjectDAOImplTest extends Assert{
 	  Project actual = new Project();
 	  actual.setProjectId(1);
 	  actual.setProjectName("Hibernate Query Language");
-	  Project excepted = Factory.getProjectDAO().getProjectById(0);
+	  Factory.getProjectDAO().getProjectById(0);
 	  assertEquals(actual, expected);
     //throw new RuntimeException("Test not implemented");
   }
@@ -88,13 +90,13 @@ public class ProjectDAOImplTest extends Assert{
 
   @Test
   public void updateProject() throws SQLException {
-	  Project expected = new Project();
-	  expected.setProjectId(6);
+	  Project expected = project;
+	  expected.setProjectId(10);
 	  expected.setProjectName(".NET");
 	  Factory.getProjectDAO().addProject(expected);
 	  expected.setProjectName("Java");
-	  Factory.getProjectDAO().updateProject(6, expected);
-	  Project actual = Factory.getProjectDAO().getProjectById(6);
+	  Factory.getProjectDAO().updateProject(10, expected);
+	  Project actual = Factory.getProjectDAO().getProjectById(10);
 	  assertEquals(actual, expected);
 	  Factory.getProjectDAO().updateProject(155, new Project());
 	  Factory.getProjectDAO().deleteProject(expected);
