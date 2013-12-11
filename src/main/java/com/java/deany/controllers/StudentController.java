@@ -2,6 +2,7 @@ package com.java.deany.controllers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,12 +14,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.java.deany.entity.Student;
 import com.java.deany.service.GroupServiceImpl;
+import com.java.deany.service.StudentService;
 import com.java.deany.service.StudentServiceImpl;
 
 @Controller
 public class StudentController {
 	static Logger log = LogManager.getLogger(StudentController.class);
-	private StudentServiceImpl studentDAO = new StudentServiceImpl();
+	
+	@Autowired
+	private StudentService studentDAO;
 	private GroupServiceImpl groupDAO = new GroupServiceImpl();
 	
 	@RequestMapping(value = "/students.html", method = RequestMethod.GET)
@@ -27,7 +31,7 @@ public class StudentController {
 		return new ModelAndView("WEB-INF/jsp/students.jsp", "students", studentDAO.getStudentsByGroup(id));
 	}
 	
-	@RequestMapping(value = "/addStudent.html", method = RequestMethod.GET)
+	@RequestMapping(value = "/addStudent.html")
 	public String showCreateStudent(Model model) {
 		Student student = new Student();
 		model.addAttribute("student", student);

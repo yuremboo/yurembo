@@ -23,16 +23,7 @@ public class Student implements Serializable {
 		
 	}
 	
-	public Student(int id, String lastName, 
-			String firstName, 
-			float averageMark, 
-			int groupNumber) {
-		this.lastName = lastName;
-		this.firstName = firstName;
-		this.averageMark = averageMark;
-		this.groupNumber = groupNumber;
-		this.id = id;
-	}
+
 	/**
 	 * 
 	 * @param lastName - last name of student. Type: String.
