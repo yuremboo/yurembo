@@ -21,9 +21,10 @@ public class GroupController {
 	private GroupServiceImpl groupDAO = new GroupServiceImpl();
 	private DepartmentServiceImpl departmentDAO = new DepartmentServiceImpl();
 	static Logger log = LogManager.getLogger(GroupController.class);
-	@RequestMapping("/groups")
-	public ModelAndView listGroups() {
-		return new ModelAndView("WEB-INF/jsp/groups.jsp", "groups", groupDAO.getAllGroups());
+	@RequestMapping(value = "/groups.html" , method = RequestMethod.GET)
+	public ModelAndView listGroups(@RequestParam(value = "departmentId", required = false) Integer id) {
+		if (id == null) return new ModelAndView("WEB-INF/jsp/groups.jsp", "groups", groupDAO.getAllGroups());
+		return new ModelAndView("WEB-INF/jsp/groups.jsp", "groups", groupDAO.getGroupsByDepartment(departmentDAO.getDepartmentById(id)));
 		
 	}
 	

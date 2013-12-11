@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.java.deany.entity.Group;
 import com.java.deany.entity.Student;
 import com.java.deany.service.GroupServiceImpl;
 import com.java.deany.service.StudentServiceImpl;
@@ -22,10 +21,10 @@ public class StudentController {
 	private StudentServiceImpl studentDAO = new StudentServiceImpl();
 	private GroupServiceImpl groupDAO = new GroupServiceImpl();
 	
-	@RequestMapping("/students.html")
-	public ModelAndView listStudents() {
-		return new ModelAndView("WEB-INF/jsp/students.jsp", "students", studentDAO.getAllStudents());
-		
+	@RequestMapping(value = "/students.html", method = RequestMethod.GET)
+	public ModelAndView listStudents(@RequestParam(value = "groupNumber", required = false) Integer id) {
+		if (id == null)	return new ModelAndView("WEB-INF/jsp/students.jsp", "students", studentDAO.getAllStudents());
+		return new ModelAndView("WEB-INF/jsp/students.jsp", "students", studentDAO.getStudentsByGroup(id));
 	}
 	
 	@RequestMapping(value = "/addStudent.html", method = RequestMethod.GET)
